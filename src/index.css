@@ -1,0 +1,86 @@
+/* home layout */
+
+.outer-wrapper {
+  flex-direction: column;
+  gap: var(--sm-size);
+  padding: var(--sm-size);
+}
+
+.screen {
+  flex-wrap: wrap;
+  gap: var(--sm-size);
+  margin: 10rem 0 5.2rem 0;
+}
+
+.image-wrapper {
+  height: auto;
+  align-items: center;
+}
+
+.footer {
+  background-color: var(--secondary-color);
+  position: fixed;
+  bottom: 0;
+  height: 5vh;
+}
+
+/* spacing  */
+
+.full-width {
+  width: 100%;
+}
+
+.margin-left {
+  margin-left: 4.8rem;
+}
+
+.margin-right {
+  margin-right: 4.8rem;
+}
+
+.margin {
+  margin: 1.6rem;
+}
+
+/* styling  */
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+body {
+  font-family: var(--body-font);
+}
+
+@media screen and (max-width: 54em) {
+  html {
+    font-size: 35%;
+  }
+
+  .screen {
+    margin-top: 12rem;
+  }
+
+  .display-screen {
+    margin-top: 12rem;
+    width: 100%;
+  }
+
+  .filter-wrapper {
+    display: none;
+  }
+
+  .product-listing {
+    margin-top: -2rem;
+    margin-left: 0;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    position: fixed;
+    bottom: 5vh;
+  }
+}
