@@ -10,7 +10,7 @@ const ProductListing = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/productss");
+        const response = await axios.get("/api/products");
         setProductList(response.data.products);
       } catch {
         dispatch({ type: "show" });
