@@ -1,12 +1,14 @@
 import { VerticalCard, FilterButton } from "../../components";
 import { useToast } from "../../context/toast-context";
 import { useState, useEffect } from "react";
+import { setTitle } from "../../utils/set-title";
 import axios from "axios";
 
 const ProductListing = () => {
   const { dispatch } = useToast();
   const [productList, setProductList] = useState([]);
-
+  const title = "The Red Closet | Products";
+  setTitle(title);
   useEffect(() => {
     (async () => {
       try {
