@@ -10,13 +10,13 @@ const ProductListing = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get("/api/productss");
         setProductList(response.data.products);
       } catch {
         dispatch({ type: "show" });
       }
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
