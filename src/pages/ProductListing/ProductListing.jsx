@@ -1,4 +1,4 @@
-import { VerticalCard, FilterButton } from "../../components";
+import { VerticalCard, FilterButton, Filter } from "../../components";
 import { useToast } from "../../context/toast-context";
 import { useState, useEffect } from "react";
 import { setTitle } from "../../utils/set-title";
@@ -24,6 +24,7 @@ const ProductListing = () => {
 
   return (
     <div>
+      <Filter />
       <main className="outer-wrapper flex-spbt product-listing">
         <div className="display-screen">
           {productList.map(({ _id, image, title, price }) => (

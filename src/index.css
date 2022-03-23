@@ -24,6 +24,16 @@
   height: 5vh;
 }
 
+/* filters */
+
+.filter-wrapper {
+  width: 25.6rem;
+  margin-top: 6.1rem;
+  overflow-y: scroll;
+  height: 83vh;
+  position: fixed;
+}
+
 .filter-buttons {
   display: none;
 }
