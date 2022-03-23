@@ -1,6 +1,9 @@
 import { Banner, HorizontalCard } from "../../components";
 import { bannerList, cardList } from "../../data/homeData";
+import { setTitle } from "../../utils/set-title";
 const Home = () => {
+  const title = "The Red Closet | Home";
+  setTitle(title);
   return (
     <div>
       <main className="outer-wrapper">

@@ -5,3 +5,6 @@ export { NavBar } from "../components/Navbar/Navbar";
 export { Footer } from "../components/Footer/Footer";
 export { Banner } from "../components/Card/Banner";
 export { HorizontalCard } from "../components/Card/HorizontalCard";
+export { VerticalCard } from "../components/Card/VerticalCard";
+export { Toast } from "../components/Toast/Toast";
+export { FilterButton } from "../components/Button/FilterButton";
