@@ -24,6 +24,9 @@
   height: 5vh;
 }
 
+.filter-buttons {
+  display: none;
+}
 /* spacing  */
 
 .full-width {
@@ -50,6 +53,27 @@
 
 body {
   font-family: var(--body-font);
+}
+
+/* product listing */
+.product-listing {
+  margin-left: 25.6rem;
+}
+
+.display-screen {
+  margin: 6.8rem 0 5.2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sm-size);
+}
+
+.toast-position {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 @media screen and (max-width: 54em) {

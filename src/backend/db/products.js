@@ -8,23 +8,82 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
-    title: "You Can WIN",
-    author: "Shiv Khera",
-    price: "5000",
-    categoryName: "non-fiction",
+    title: "Summer T-Shirt",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product1.webp",
+    price: "500",
+    categoryName: "Wearables",
   },
   {
     _id: uuid(),
-    title: "You are Winner",
-    author: "Junaid Qureshi",
+    title: "Scarf",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product2.webp",
+    price: "300",
+    categoryName: "Wearables",
+  },
+  {
+    _id: uuid(),
+    title: "Coffee Mug",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product3.webp",
+    price: "100",
+    categoryName: "Accessories",
+  },
+  {
+    _id: uuid(),
+    title: "Phone case",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product4.webp",
+    price: "200",
+    categoryName: "Accessories",
+  },
+  {
+    _id: uuid(),
+    title: "Notebook",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product5.webp",
+    price: "400",
+    categoryName: "Accessories",
+  },
+  {
+    _id: uuid(),
+    title: "Water Bottle",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product6.webp",
+    price: "500",
+    categoryName: "Accessories",
+  },
+  {
+    _id: uuid(),
+    title: "Red Vinyl",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product7.webp",
+    price: "1500",
+    categoryName: "Albums",
+  },
+  {
+    _id: uuid(),
+    title: "Fearless CD",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product8.webp",
+    price: "1500",
+    categoryName: "Albums",
+  },
+  {
+    _id: uuid(),
+    title: "Hoodie",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product9.webp",
     price: "3000",
-    categoryName: "horror",
+    categoryName: "Wearables",
   },
   {
     _id: uuid(),
-    title: "Think and Grow Rich",
-    author: "Shiv Khera",
-    price: "1000",
-    categoryName: "fiction",
+    title: "T-shirt Dress",
+    image:
+      "https://raw.githubusercontent.com/Aditi0505/TheRedClosetImages/master/product10.webp",
+    price: "3200",
+    categoryName: "Wearables",
   },
 ];
