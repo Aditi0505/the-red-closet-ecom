@@ -38,8 +38,14 @@ const ProductListing = () => {
       <Filter />
       <main className="outer-wrapper flex-spbt product-listing">
         <div className="display-screen">
-          {sortedProductList.map(({ _id, image, title, price }) => (
-            <VerticalCard image={image} title={title} msg={price} key={_id} />
+          {sortedProductList.map(({ _id, image, title, price, rating }) => (
+            <VerticalCard
+              image={image}
+              title={title}
+              msg={price}
+              key={_id}
+              rating={rating}
+            />
           ))}
         </div>
         <div className="filter-buttons">
