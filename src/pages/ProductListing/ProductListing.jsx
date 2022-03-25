@@ -1,13 +1,24 @@
 import { VerticalCard, FilterButton, Filter } from "../../components";
-import { useToast } from "../../context/toast-context";
+import { useToast, useFilter } from "../../context";
 import { useState, useEffect } from "react";
 import { setTitle } from "../../utils/set-title";
 import axios from "axios";
+import {
+  getRatedProducts,
+  getSortedProducts,
+  getCheckedProducts,
+  getPricedProducts,
+} from "../../utils";
 
 const ProductListing = () => {
   const { dispatch } = useToast();
+  const { filterState } = useFilter();
   const [productList, setProductList] = useState([]);
   const title = "The Red Closet | Products";
+  const pricedProducts = getPricedProducts(filterState, productList);
+  const ratedProducts = getRatedProducts(filterState, pricedProducts);
+  const checkedProductList = getCheckedProducts(filterState, ratedProducts);
+  const sortedProductList = getSortedProducts(filterState, checkedProductList);
   setTitle(title);
   useEffect(() => {
     (async () => {
@@ -27,7 +38,7 @@ const ProductListing = () => {
       <Filter />
       <main className="outer-wrapper flex-spbt product-listing">
         <div className="display-screen">
-          {productList.map(({ _id, image, title, price }) => (
+          {sortedProductList.map(({ _id, image, title, price }) => (
             <VerticalCard image={image} title={title} msg={price} key={_id} />
           ))}
         </div>

@@ -20,7 +20,7 @@ const VerticalCard = ({ title, image, msg }) => {
           Remove from wishlist
         </button>
         <span className="card-badge flex-center">
-          <i className="fas fa-heart"></i>
+          <i className="far fa-heart"></i>
         </span>
       </div>
     </div>
