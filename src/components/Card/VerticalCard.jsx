@@ -1,4 +1,4 @@
-const VerticalCard = ({ title, image, msg }) => {
+const VerticalCard = ({ title, image, msg, rating }) => {
   return (
     <div className="card">
       <div className="card-inner-container">
@@ -8,6 +8,15 @@ const VerticalCard = ({ title, image, msg }) => {
         <div className="card-body">
           <div className="card-title">{title}</div>
           <div className="card-desc">{`$ ${msg}`}</div>
+          <div className="card-desc">
+            {[...Array(5)].map((item, i) =>
+              i + 1 > rating ? (
+                <i class="far fa-star"></i>
+              ) : (
+                <i class="fas fa-star enabled"></i>
+              )
+            )}
+          </div>
         </div>
         <div className="hide-overlay">Women</div>
       </div>
@@ -20,7 +29,7 @@ const VerticalCard = ({ title, image, msg }) => {
           Remove from wishlist
         </button>
         <span className="card-badge flex-center">
-          <i className="fas fa-heart"></i>
+          <i className="far fa-heart"></i>
         </span>
       </div>
     </div>

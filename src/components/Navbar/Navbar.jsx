@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "../Pills/Pills";
 import { Button } from "../Button/Button";
+import { useFilter } from "../../context";
 const NavBar = () => {
   const location = useLocation();
+  const { filterState, filterDispatch } = useFilter();
   return (
     <div>
       <header className="desktop-navigation position-fixed">
@@ -14,7 +16,19 @@ const NavBar = () => {
             </Link>
           </div>
         </nav>
-        <input type="text" name="search" id="search" placeholder="🔍 Search" />
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="🔍 Search"
+          onChange={(e) =>
+            filterDispatch({
+              type: "FILTER_BY_SEARCH",
+              payload: e.target.value,
+            })
+          }
+          value={filterState.searchKeyword}
+        />
         <ul className="nav-icons">
           {location.pathname === "/" ? (
             <Button buttonState={"Login"} />

@@ -1,27 +1,26 @@
 import { useFilter } from "../../context";
-const Checkbox = ({ categoryName, name, id, type, payload }) => {
+const Rating = ({ value, name, type, payload }) => {
   const { filterState, filterDispatch } = useFilter();
   return (
     <>
       <input
-        type="checkbox"
-        required
+        type="radio"
+        id={value}
         name={name}
-        id={id}
-        className="inputBox margin-tb-sm"
+        className="margin-tb-sm"
         onChange={() =>
           filterDispatch({
             type: type,
             payload: payload,
           })
         }
-        checked={filterState[payload]}
+        checked={filterState.rating === payload}
       />
-      <label htmlFor={name} className="label-content padding-xs">
-        {categoryName}
+      <label htmlFor={value} className="label-content padding-xs">
+        {value}
       </label>
     </>
   );
 };
 
-export { Checkbox };
+export { Rating };

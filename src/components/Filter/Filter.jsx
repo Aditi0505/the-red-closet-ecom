@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useToast } from "../../context/toast-context";
+import { useToast, useFilter } from "../../context";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { RadioButton } from "../RadioButton/RadioButton";
+import { Rating } from "../Rating/Rating";
 
-const priceRangeList = [0, 250, 500];
+const priceRangeList = [0, 3000, 7000];
 
-const ratingList = ["4", "3", "2", "1"];
-
-const sortList = ["Low to High", "High to Low"];
 const Filter = () => {
   const { dispatch } = useToast();
+  const { filterState, filterDispatch } = useFilter();
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -33,13 +32,24 @@ const Filter = () => {
               <div>
                 <span className="ft-bolder">Filters</span>
                 <span className="margin-left underlined">
-                  <button className="btn btn-link">Clear</button>
+                  <button
+                    className="btn btn-link"
+                    onClick={() =>
+                      filterDispatch({
+                        type: "CLEAR",
+                      })
+                    }
+                  >
+                    Clear
+                  </button>
                 </span>
               </div>
             </li>
             <li className="list-item">
               <div className="flex-column">
-                <span className="ft-bolder">Price</span>
+                <label htmlFor="priceRange" className="ft-bolder">
+                  Price
+                </label>
                 <div className="flex-spbt">
                   {priceRangeList.map((item, index) => (
                     <span key={index}>{item}</span>
@@ -53,7 +63,17 @@ const Filter = () => {
                   type="range"
                   name="priceRange"
                   id="priceRange"
+                  min="0"
+                  max="7000"
+                  step="500"
                   className="full-width"
+                  value={filterState.price}
+                  onChange={(e) =>
+                    filterDispatch({
+                      type: "FILTER_BY_PRICE",
+                      payload: Number(e.target.value),
+                    })
+                  }
                 />
               </div>
             </li>
@@ -67,6 +87,8 @@ const Filter = () => {
                         categoryName={item.categoryName}
                         name={item.categoryName}
                         id={item.categoryName}
+                        type="FILTER_BY_CATEGORY"
+                        payload={item.categoryName}
                       />
                     </div>
                   ))}
@@ -78,14 +100,38 @@ const Filter = () => {
                 <span className="ft-bolder">Rating</span>
                 <div>
                   <div>
-                    {ratingList.map((item, index) => (
-                      <div key={index}>
-                        <RadioButton
-                          value={`${item} Stars & above`}
-                          name="rating"
-                        />
-                      </div>
-                    ))}
+                    <div>
+                      <Rating
+                        value={`4 Stars & above`}
+                        name="rating"
+                        type="RATING"
+                        payload={4}
+                      />
+                    </div>
+                    <div>
+                      <Rating
+                        value={`3 Stars & above`}
+                        name="rating"
+                        type="RATING"
+                        payload={3}
+                      />
+                    </div>
+                    <div>
+                      <Rating
+                        value={`2 Stars & above`}
+                        name="rating"
+                        type="RATING"
+                        payload={2}
+                      />
+                    </div>
+                    <div>
+                      <Rating
+                        value={`1 Star & above`}
+                        name="rating"
+                        type="RATING"
+                        payload={1}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -95,11 +141,22 @@ const Filter = () => {
                 <span className="ft-bolder">Sort By</span>
                 <div>
                   <div>
-                    {sortList.map((item, index) => (
-                      <div key={index}>
-                        <RadioButton value={`Price- ${item}`} name="sort" />
-                      </div>
-                    ))}
+                    <div>
+                      <RadioButton
+                        value={`Price- Low to High`}
+                        name="sortBy"
+                        type="SORT"
+                        payload="LOW_TO_HIGH"
+                      />
+                    </div>
+                    <div>
+                      <RadioButton
+                        value={`Price- High to Low`}
+                        name="sortBy"
+                        type="SORT"
+                        payload="HIGH_TO_LOW"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
