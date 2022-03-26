@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "../Pills/Pills";
 import { Button } from "../Button/Button";
 import { useFilter } from "../../context";
-import { useState } from "react";
 const NavBar = () => {
   const location = useLocation();
   const { filterState, filterDispatch } = useFilter();
