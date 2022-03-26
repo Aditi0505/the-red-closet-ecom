@@ -18,11 +18,17 @@ export const filterReducer = (state, action) => {
         Wearables: false,
         Accessories: false,
         price: 7000,
+        searchKeyword: "",
       };
     case "FILTER_BY_PRICE":
       return {
         ...state,
         price: action.payload,
+      };
+    case "FILTER_BY_SEARCH":
+      return {
+        ...state,
+        searchKeyword: action.payload,
       };
     default:
       return state;

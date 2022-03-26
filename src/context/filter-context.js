@@ -11,6 +11,7 @@ const FilterProvider = ({ children }) => {
     Wearables: false,
     Accessories: false,
     price: 7000,
+    searchKeyword: "",
   });
   return (
     <FilterContext.Provider value={{ filterState, filterDispatch }}>

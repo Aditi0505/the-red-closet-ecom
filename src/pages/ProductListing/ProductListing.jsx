@@ -8,6 +8,7 @@ import {
   getSortedProducts,
   getCheckedProducts,
   getPricedProducts,
+  getSearchedProducts,
 } from "../../utils";
 
 const ProductListing = () => {
@@ -15,7 +16,8 @@ const ProductListing = () => {
   const { filterState } = useFilter();
   const [productList, setProductList] = useState([]);
   const title = "The Red Closet | Products";
-  const pricedProducts = getPricedProducts(filterState, productList);
+  const searchedProducts = getSearchedProducts(filterState, productList);
+  const pricedProducts = getPricedProducts(filterState, searchedProducts);
   const ratedProducts = getRatedProducts(filterState, pricedProducts);
   const checkedProductList = getCheckedProducts(filterState, ratedProducts);
   const sortedProductList = getSortedProducts(filterState, checkedProductList);
