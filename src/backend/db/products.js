@@ -14,6 +14,7 @@ export const products = [
     price: "500",
     categoryName: "Wearables",
     rating: 4,
+    originalPrice: "1000",
   },
   {
     _id: uuid(),
@@ -23,6 +24,7 @@ export const products = [
     price: "300",
     categoryName: "Wearables",
     rating: 3,
+    originalPrice: "600",
   },
   {
     _id: uuid(),
@@ -32,6 +34,7 @@ export const products = [
     price: "100",
     categoryName: "Accessories",
     rating: 4,
+    originalPrice: "200",
   },
   {
     _id: uuid(),
@@ -41,6 +44,7 @@ export const products = [
     price: "200",
     categoryName: "Accessories",
     rating: 2,
+    originalPrice: "400",
   },
   {
     _id: uuid(),
@@ -50,6 +54,7 @@ export const products = [
     price: "400",
     categoryName: "Accessories",
     rating: 1,
+    originalPrice: "800",
   },
   {
     _id: uuid(),
@@ -59,6 +64,7 @@ export const products = [
     price: "500",
     categoryName: "Accessories",
     rating: 4,
+    originalPrice: "1000",
   },
   {
     _id: uuid(),
@@ -68,6 +74,7 @@ export const products = [
     price: "1500",
     categoryName: "Albums",
     rating: 4,
+    originalPrice: "3000",
   },
   {
     _id: uuid(),
@@ -77,6 +84,7 @@ export const products = [
     price: "1500",
     categoryName: "Albums",
     rating: 3,
+    originalPrice: "3000",
   },
   {
     _id: uuid(),
@@ -86,6 +94,7 @@ export const products = [
     price: "3000",
     categoryName: "Wearables",
     rating: 2,
+    originalPrice: "6000",
   },
   {
     _id: uuid(),
@@ -95,5 +104,6 @@ export const products = [
     price: "3200",
     categoryName: "Wearables",
     rating: 1,
+    originalPrice: "6400",
   },
 ];

@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "../Pills/Pills";
 import { Button } from "../Button/Button";
-import { useFilter } from "../../context";
+import { useCart, useFilter } from "../../context";
 const NavBar = () => {
   const location = useLocation();
   const { filterState, filterDispatch } = useFilter();
+  const { cartState } = useCart();
   return (
     <div>
       <header className="desktop-navigation position-fixed">
@@ -45,7 +46,7 @@ const NavBar = () => {
           <NavLink
             linkTo="/cart"
             iconclassName={"fas fa-shopping-cart"}
-            badgeCount={0}
+            badgeCount={cartState.quantity}
           />
         </ul>
       </header>
