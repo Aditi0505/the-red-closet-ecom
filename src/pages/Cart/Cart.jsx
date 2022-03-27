@@ -1,11 +1,17 @@
+import { useEffect } from "react";
 import { CartProduct } from "../../components";
-import { useCart } from "../../context";
+import { useCart, useToast } from "../../context";
 import { setTitle } from "../../utils/set-title";
 const Cart = () => {
   const title = "The Red Closet | Cart";
   setTitle(title);
   const { cartState } = useCart();
+  const { dispatch } = useToast();
   const totalCartAmount = Number(cartState.totalPrice) + 499;
+  useEffect(() => {
+    cartState.quantity === 0 &&
+      dispatch({ type: "show", payload: "No items added in the cart" });
+  }, [cartState.quantity, dispatch]);
   return (
     <main className="outer-wrapper">
       <section className="display-screen">
@@ -13,7 +19,7 @@ const Cart = () => {
           (item) =>
             item.quantity > 0 && <CartProduct product={item} key={item._id} />
         )}
-        {cartState.quantity > 0 ? (
+        {cartState.quantity > 0 && (
           <div className="text-card-container card">
             <div className="card-inner-container">
               <div className="card-body padding-sm">
@@ -65,8 +71,6 @@ const Cart = () => {
               </span>
             </div>
           </div>
-        ) : (
-          <h1>No items in Cart</h1>
         )}
       </section>
     </main>

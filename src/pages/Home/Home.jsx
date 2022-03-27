@@ -1,9 +1,15 @@
+import { useEffect } from "react";
 import { Banner, HorizontalCard } from "../../components";
+import { useToast } from "../../context";
 import { bannerList, cardList } from "../../data/homeData";
 import { setTitle } from "../../utils/set-title";
 const Home = () => {
   const title = "The Red Closet | Home";
   setTitle(title);
+  const { dispatch } = useToast();
+  useEffect(() => {
+    dispatch({ type: "hide", payload: "" });
+  }, [dispatch]);
   return (
     <div>
       <main className="outer-wrapper">

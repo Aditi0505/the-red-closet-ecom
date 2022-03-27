@@ -29,8 +29,9 @@ const ProductListing = () => {
           data: { products },
         } = await axios.get("/api/products");
         setProductList(products);
+        dispatch({ type: "hide", payload: "" });
       } catch {
-        dispatch({ type: "show" });
+        dispatch({ type: "show", payload: "Cannot fetch data right now." });
       }
     })();
   }, [dispatch]);
