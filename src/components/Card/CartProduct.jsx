@@ -72,7 +72,15 @@ const CartProduct = ({ product }) => {
             >
               Remove from Cart
             </button>
-            <button className="full-width btn btn-outline-secondary">
+            <button
+              className="full-width btn btn-outline-secondary"
+              onClick={() =>
+                cartDispatch({
+                  type: "MOVE_TO_WISHLIST",
+                  payload: product,
+                })
+              }
+            >
               Move to Wishlist
             </button>
           </div>

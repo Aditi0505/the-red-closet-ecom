@@ -9,6 +9,7 @@ const CartProvider = ({ children }) => {
     totalPrice: 0,
     totalDiscountedPrice: 0,
     itemsInCart: [],
+    wishlistItems: [],
   });
   return (
     <CartContext.Provider value={{ cartState, cartDispatch }}>

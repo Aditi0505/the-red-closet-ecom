@@ -9,9 +9,10 @@ const Cart = () => {
   const { dispatch } = useToast();
   const totalCartAmount = Number(cartState.totalPrice) + 499;
   useEffect(() => {
-    cartState.quantity === 0 &&
+    dispatch({ type: "hide", payload: "" });
+    cartState.itemsInCart.length <= 0 &&
       dispatch({ type: "show", payload: "No items added in the cart" });
-  }, [cartState.quantity, dispatch]);
+  }, [cartState.itemsInCart.length, dispatch]);
   return (
     <main className="outer-wrapper">
       <section className="display-screen">
@@ -19,7 +20,7 @@ const Cart = () => {
           (item) =>
             item.quantity > 0 && <CartProduct product={item} key={item._id} />
         )}
-        {cartState.quantity > 0 && (
+        {cartState.quantity > 0 && cartState.itemsInCart.length && (
           <div className="text-card-container card">
             <div className="card-inner-container">
               <div className="card-body padding-sm">
@@ -28,7 +29,7 @@ const Cart = () => {
                   <hr className="full-width" />
                   <div className="flex-spbt">
                     <span className="items">
-                      Price {`(${cartState.quantity} items)`}
+                      Price {`(${cartState.itemsInCart.length} items)`}
                     </span>
                     <span className="price">{` $${cartState.totalPrice} `}</span>
                   </div>

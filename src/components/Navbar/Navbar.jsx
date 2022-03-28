@@ -41,12 +41,12 @@ const NavBar = () => {
           <NavLink
             linkTo="/wishlist"
             iconclassName={"fas fa-heart"}
-            badgeCount={0}
+            badgeCount={cartState.wishlistItems.length}
           />
           <NavLink
             linkTo="/cart"
             iconclassName={"fas fa-shopping-cart"}
-            badgeCount={cartState.quantity}
+            badgeCount={cartState.itemsInCart.length}
           />
         </ul>
       </header>
