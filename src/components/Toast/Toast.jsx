@@ -5,12 +5,12 @@ const Toast = () => {
   return (
     <div className="leading-container z-index toast-position">
       <div className="leading-toast flex-spbt">
-        <div>Cannot fetch data right now. Please try after sometime.</div>
+        <div>{state.payload}</div>
         <div className="btn-container flex-spbt">
           <button className="toast-btn toast">RETRY</button>
           <button
             className="toast toast-close"
-            onClick={() => dispatch({ type: "hide" })}
+            onClick={() => dispatch({ type: "hide", payload: "" })}
           >
             <i className="fa fa-times" aria-hidden="true"></i>
           </button>

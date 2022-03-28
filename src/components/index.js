@@ -11,3 +11,4 @@ export { FilterButton } from "../components/Button/FilterButton";
 export { Filter } from "../components/Filter/Filter";
 export { Checkbox } from "../components/Checkbox/Checkbox";
 export { RadioButton } from "../components/RadioButton/RadioButton";
+export { CartProduct } from "../components/Card/CartProduct";
