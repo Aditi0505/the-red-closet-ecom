@@ -7,6 +7,7 @@ const Home = () => {
   const title = "The Red Closet | Home";
   setTitle(title);
   const { dispatch } = useToast();
+
   useEffect(() => {
     dispatch({ type: "hide", payload: "" });
   }, [dispatch]);

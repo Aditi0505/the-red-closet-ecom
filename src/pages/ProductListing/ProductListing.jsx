@@ -3,6 +3,7 @@ import { useToast, useFilter } from "../../context";
 import { useState, useEffect } from "react";
 import { setTitle } from "../../utils/set-title";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 import {
   getRatedProducts,
   getSortedProducts,
@@ -12,8 +13,11 @@ import {
 } from "../../utils";
 
 const ProductListing = () => {
+  const location = useLocation();
+  const categoryName = location.state;
+  console.log(categoryName);
   const { dispatch } = useToast();
-  const { filterState } = useFilter();
+  const { filterState, filterDispatch } = useFilter();
   const [productList, setProductList] = useState([]);
   const title = "The Red Closet | Products";
   const searchedProducts = getSearchedProducts(filterState, productList);
@@ -30,11 +34,15 @@ const ProductListing = () => {
         } = await axios.get("/api/products");
         setProductList(products);
         dispatch({ type: "hide", payload: "" });
+        filterDispatch({
+          type: "FILTER_BY_CATEGORY",
+          payload: categoryName,
+        });
       } catch {
         dispatch({ type: "show", payload: "Cannot fetch data right now." });
       }
     })();
-  }, [dispatch]);
+  }, [dispatch, filterDispatch, categoryName]);
 
   return (
     <div>

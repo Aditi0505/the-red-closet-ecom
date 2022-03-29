@@ -5,7 +5,7 @@ const Banner = ({ image, banner }) => {
       <div className="card">
         <div className="card-inner-container">
           <div className="card-image-overlay opacity">
-            <Link to="/products">
+            <Link to="/products" state={banner}>
               <img src={image} alt="Taylor Swift" className="img" />
             </Link>
           </div>

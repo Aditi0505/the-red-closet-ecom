@@ -1,15 +1,15 @@
 const bannerList = [
   {
     image: "/assets/images/Album.jpg",
-    banner: "Album 1",
+    banner: "Albums",
   },
   {
     image: "/assets/images/Concert.jpg",
-    banner: "Concert Tickets",
+    banner: "Wearables",
   },
   {
     image: "/assets/images/Album.jpg",
-    banner: "Album 2",
+    banner: "Accessories",
   },
 ];
 
@@ -17,7 +17,7 @@ const cardList = [
   {
     image: "/assets/images/album2.jpg",
     title: "New Arrivals",
-    msg: "Check out the latest Vinyls and grab this limited edition.",
+    msg: "Check out the latest accessories collections.",
   },
   {
     image: "/assets/images/taylor-swift-album.jpg",
