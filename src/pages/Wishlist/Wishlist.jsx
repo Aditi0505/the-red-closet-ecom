@@ -7,7 +7,6 @@ const Wishlist = () => {
   setTitle(title);
   const { cartState } = useCart();
   const { dispatch } = useToast();
-  console.log("wishlist", cartState.wishlistItems);
   useEffect(() => {
     dispatch({ type: "hide", payload: "" });
     cartState.wishlistItems.length <= 0 &&
