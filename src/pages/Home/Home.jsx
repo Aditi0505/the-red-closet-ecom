@@ -32,8 +32,14 @@ const Home = () => {
           </div>
         </section>
         <section className="screen flex-center">
-          {cardList.map(({ title, image, msg }, index) => (
-            <HorizontalCard title={title} image={image} msg={msg} key={index} />
+          {cardList.map(({ title, image, msg, category }, index) => (
+            <HorizontalCard
+              title={title}
+              image={image}
+              msg={msg}
+              key={index}
+              category={category}
+            />
           ))}
         </section>
       </main>

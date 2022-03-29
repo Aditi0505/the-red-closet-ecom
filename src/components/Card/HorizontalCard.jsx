@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const HorizontalCard = ({ title, image, msg }) => {
+const HorizontalCard = ({ title, image, msg, category }) => {
   return (
     <div className="card-container-horizontal">
       <div className="card-inner-container-horizontal">
@@ -9,7 +9,7 @@ const HorizontalCard = ({ title, image, msg }) => {
         <div className="flex-center card-body-horizontal">
           <div className="card-title-horizontal">{title}</div>
           <div className="card-desc-horizontal">{msg}</div>
-          <Link to="/products">
+          <Link to="/products" state={category}>
             <i className="fa fa-arrow-right btn btn-icon"></i>
           </Link>
         </div>
