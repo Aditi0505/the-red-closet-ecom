@@ -8,6 +8,9 @@ export const cartReducer = (state, action) => {
         totalDiscountedPrice:
           state.totalDiscountedPrice + Number(action.payload.originalPrice),
         itemsInCart: [{ ...action.payload, quantity: 1 }, ...state.itemsInCart],
+        wishlistItems: state.wishlistItems.filter(
+          (item) => item._id !== action.payload._id
+        ),
       };
     case "INCREASE_CART_QUANTITY":
       return {
@@ -54,18 +57,6 @@ export const cartReducer = (state, action) => {
           state.wishlistItems.some(({ _id }) => _id === action.payload._id)
             ? [...state.wishlistItems]
             : [{ ...action.payload, quantity: 1 }, ...state.wishlistItems],
-      };
-    case "MOVE_TO_CART":
-      return {
-        ...state,
-        quantity: state.quantity + 1,
-        totalPrice: state.totalPrice + Number(action.payload.price),
-        totalDiscountedPrice:
-          state.totalDiscountedPrice + Number(action.payload.originalPrice),
-        itemsInCart: [{ ...action.payload, quantity: 1 }, ...state.itemsInCart],
-        wishlistItems: state.wishlistItems.filter(
-          (item) => item._id !== action.payload._id
-        ),
       };
     case "REMOVE_FROM_WISHLIST":
       return {
