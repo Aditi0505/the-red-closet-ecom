@@ -51,7 +51,7 @@ const VerticalCard = ({ product }) => {
           Remove from wishlist
         </button>
         <button className="card-badge flex-center">
-          {cartState.wishlistItems.some((i) => i._id === product._id) ? (
+          {cartState.wishlistItems.some((item) => item._id === product._id) ? (
             <i
               className="fas fa-heart"
               onClick={() =>
