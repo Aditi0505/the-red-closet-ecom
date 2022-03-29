@@ -50,9 +50,29 @@ const VerticalCard = ({ product }) => {
         <button className="btn-action-horizontal-hide secondary">
           Remove from wishlist
         </button>
-        <span className="card-badge flex-center">
-          <i className="far fa-heart"></i>
-        </span>
+        <button className="card-badge flex-center">
+          {cartState.wishlistItems.some((item) => item._id === product._id) ? (
+            <i
+              className="fas fa-heart"
+              onClick={() =>
+                cartDispatch({
+                  type: "REMOVE_FROM_WISHLIST",
+                  payload: product,
+                })
+              }
+            ></i>
+          ) : (
+            <i
+              className="far fa-heart"
+              onClick={() =>
+                cartDispatch({
+                  type: "ADD_TO_WISHLIST",
+                  payload: product,
+                })
+              }
+            ></i>
+          )}
+        </button>
       </div>
     </div>
   );

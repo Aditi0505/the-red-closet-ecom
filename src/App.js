@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, ProductListing, Cart } from "./pages";
+import { Home, ProductListing, Cart, Wishlist } from "./pages";
 import { Footer, NavBar, Toast } from "./components";
 import { ToastProvider, FilterProvider, CartProvider } from "./context";
 import Mockman from "mockman-js";
@@ -12,9 +12,10 @@ const App = () => {
           <NavBar />
           <div className="App">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" exact element={<Home />} />
               <Route path="/products" element={<ProductListing />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/mock" element={<Mockman />} />
             </Routes>
           </div>
