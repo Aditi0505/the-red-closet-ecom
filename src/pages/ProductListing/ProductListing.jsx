@@ -15,7 +15,6 @@ import {
 const ProductListing = () => {
   const location = useLocation();
   const categoryName = location.state;
-  console.log(categoryName);
   const { dispatch } = useToast();
   const { filterState, filterDispatch } = useFilter();
   const [productList, setProductList] = useState([]);

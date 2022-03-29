@@ -1,7 +1,6 @@
 import { useFilter } from "../../context";
 const Checkbox = ({ categoryName, name, id, type, payload }) => {
   const { filterState, filterDispatch } = useFilter();
-  console.log("filter", filterState[payload]);
   return (
     <>
       <input
