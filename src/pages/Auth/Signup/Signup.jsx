@@ -47,7 +47,7 @@ const Signup = () => {
               Create New Account
             </button>
             <div>
-              <Link to="/signup" className="text text-sm ft-light">
+              <Link to="/login" className="text text-sm ft-light">
                 Already have an account
               </Link>
             </div>
