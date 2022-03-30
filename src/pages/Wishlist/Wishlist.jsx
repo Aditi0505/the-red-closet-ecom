@@ -6,12 +6,15 @@ const Wishlist = () => {
   const title = "The Red Closet | Wishlist";
   setTitle(title);
   const { cartState } = useCart();
-  const { dispatch } = useToast();
+  const { toastDispatch } = useToast();
   useEffect(() => {
-    dispatch({ type: "hide", payload: "" });
+    toastDispatch({ type: "HIDE", payload: "" });
     cartState.wishlistItems.length <= 0 &&
-      dispatch({ type: "show", payload: "No items added in the wishlist" });
-  }, [cartState.wishlistItems.length, dispatch]);
+      toastDispatch({
+        type: "SHOW",
+        payload: "No items added in the wishlist",
+      });
+  }, [cartState.wishlistItems.length, toastDispatch]);
   return (
     <main className="outer-wrapper flex-spbt">
       <section className="display-screen">

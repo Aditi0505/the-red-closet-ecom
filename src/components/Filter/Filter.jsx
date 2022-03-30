@@ -8,7 +8,7 @@ import { Rating } from "../Rating/Rating";
 const priceRangeList = [0, 3000, 7000];
 
 const Filter = () => {
-  const { dispatch } = useToast();
+  const { toastDispatch } = useToast();
   const { filterState, filterDispatch } = useFilter();
   const [categories, setCategories] = useState([]);
 
@@ -18,10 +18,10 @@ const Filter = () => {
         const response = await axios.get("/api/categories");
         setCategories(response.data.categories);
       } catch {
-        dispatch({ type: "show" });
+        toastDispatch({ type: "SHOW" });
       }
     })();
-  }, [dispatch]);
+  }, [toastDispatch]);
 
   return (
     <aside className="outer-wrapper">

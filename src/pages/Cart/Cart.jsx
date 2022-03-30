@@ -6,13 +6,13 @@ const Cart = () => {
   const title = "The Red Closet | Cart";
   setTitle(title);
   const { cartState } = useCart();
-  const { dispatch } = useToast();
+  const { toastDispatch } = useToast();
   const totalCartAmount = Number(cartState.totalPrice) + 499;
   useEffect(() => {
-    dispatch({ type: "hide", payload: "" });
+    toastDispatch({ type: "HIDE", payload: "" });
     cartState.itemsInCart.length <= 0 &&
-      dispatch({ type: "show", payload: "No items added in the cart" });
-  }, [cartState.itemsInCart.length, dispatch]);
+      toastDispatch({ type: "SHOW", payload: "No items added in the cart" });
+  }, [cartState.itemsInCart.length, toastDispatch]);
   return (
     <main className="outer-wrapper">
       <section className="display-screen">
