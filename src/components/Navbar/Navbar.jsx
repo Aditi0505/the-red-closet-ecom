@@ -32,11 +32,13 @@ const NavBar = () => {
         />
         <ul className="nav-icons">
           {location.pathname === "/" ? (
-            <Button buttonState={"Login"} />
+            <Button buttonState={"Login"} route="login" />
           ) : location.pathname === "/login" ? (
-            <Button buttonState={"Signup"} />
+            <Button buttonState={"Signup"} route="signup" />
+          ) : location.pathname === "/signup" ? (
+            <Button buttonState={"Login"} route="login" />
           ) : (
-            <Button buttonState={"Logout"} />
+            <Button buttonState={"Logout"} route="" />
           )}
           <NavLink
             linkTo="/wishlist"

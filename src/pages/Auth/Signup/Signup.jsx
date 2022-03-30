@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
 import { Input } from "../../../components";
 import { setTitle } from "../../../utils/set-title";
-const Login = () => {
-  const title = "The Red Closet | Login";
+const Signup = () => {
+  const title = "The Red Closet | Signup";
   setTitle(title);
-
-  const handleInput = () => {};
   return (
     <main className="outer-wrapper flex-spbt">
       <section className="screen flex-spbt">
         <div className="form-container card-container-shadow">
           <div className="card-title">
-            <h3>Login</h3>
+            <h3>Signup</h3>
           </div>
           <form className="card-desc form">
             <div className="text-left padding-xs">
@@ -41,25 +39,16 @@ const Login = () => {
                 htmlFor="remember"
                 className="label-content text-sm padding-xs"
               >
-                Remember me
+                I accept all terms and conditions
               </label>
-              <Link
-                to="/"
-                className="text text-right text-sm ft-light padding-xs"
-              >
-                Forgot password
-              </Link>
             </div>
 
-            <button
-              className="btn btn-primary margin-tb-sm"
-              onClick={handleInput}
-            >
-              Login To Your Account
+            <button className="btn btn-primary margin-tb-sm">
+              Create New Account
             </button>
             <div>
               <Link to="/signup" className="text text-sm ft-light">
-                Create New Account
+                Already have an account
               </Link>
             </div>
           </form>
@@ -69,4 +58,4 @@ const Login = () => {
   );
 };
 
-export { Login };
+export { Signup };
