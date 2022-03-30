@@ -15,7 +15,7 @@ import {
 const ProductListing = () => {
   const location = useLocation();
   const categoryName = location.state;
-  const { dispatch } = useToast();
+  const { toastDispatch } = useToast();
   const { filterState, filterDispatch } = useFilter();
   const [productList, setProductList] = useState([]);
   const title = "The Red Closet | Products";
@@ -32,16 +32,19 @@ const ProductListing = () => {
           data: { products },
         } = await axios.get("/api/products");
         setProductList(products);
-        dispatch({ type: "hide", payload: "" });
+        toastDispatch({ type: "HIDE", payload: "" });
         filterDispatch({
           type: "FILTER_BY_CATEGORY",
           payload: categoryName,
         });
       } catch {
-        dispatch({ type: "show", payload: "Cannot fetch data right now." });
+        toastDispatch({
+          type: "SHOW",
+          payload: "Cannot fetch data right now.",
+        });
       }
     })();
-  }, [dispatch, filterDispatch, categoryName]);
+  }, [toastDispatch, filterDispatch, categoryName]);
 
   return (
     <div>

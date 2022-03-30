@@ -1,8 +1,8 @@
 export const toastReducer = (state, action) => {
   switch (action.type) {
-    case "show":
+    case "SHOW":
       return { ...state, showToast: true, payload: action.payload };
-    case "hide":
+    case "HIDE":
       return { ...state, showToast: false, payload: action.payload };
     default:
       return state;
