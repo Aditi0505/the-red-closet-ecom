@@ -6,10 +6,11 @@ import { setTitle } from "../../utils/set-title";
 const Home = () => {
   const title = "The Red Closet | Home";
   setTitle(title);
-  const { dispatch } = useToast();
+  const { toastDispatch } = useToast();
+
   useEffect(() => {
-    dispatch({ type: "hide", payload: "" });
-  }, [dispatch]);
+    toastDispatch({ type: "HIDE", payload: "" });
+  }, [toastDispatch]);
   return (
     <div>
       <main className="outer-wrapper">
@@ -31,8 +32,14 @@ const Home = () => {
           </div>
         </section>
         <section className="screen flex-center">
-          {cardList.map(({ title, image, msg }, index) => (
-            <HorizontalCard title={title} image={image} msg={msg} key={index} />
+          {cardList.map(({ title, image, msg, category }, index) => (
+            <HorizontalCard
+              title={title}
+              image={image}
+              msg={msg}
+              key={index}
+              category={category}
+            />
           ))}
         </section>
       </main>

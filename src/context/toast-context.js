@@ -4,9 +4,11 @@ import { toastReducer } from "../reducer/toast-reducer";
 const ToastContext = createContext(false);
 
 const ToastProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(toastReducer, { showToast: false });
+  const [toastState, toastDispatch] = useReducer(toastReducer, {
+    showToast: false,
+  });
   return (
-    <ToastContext.Provider value={{ state, dispatch }}>
+    <ToastContext.Provider value={{ toastState, toastDispatch }}>
       {children}
     </ToastContext.Provider>
   );

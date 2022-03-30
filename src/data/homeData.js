@@ -1,15 +1,15 @@
 const bannerList = [
   {
     image: "/assets/images/Album.jpg",
-    banner: "Album 1",
+    banner: "Albums",
   },
   {
     image: "/assets/images/Concert.jpg",
-    banner: "Concert Tickets",
+    banner: "Wearables",
   },
   {
     image: "/assets/images/Album.jpg",
-    banner: "Album 2",
+    banner: "Accessories",
   },
 ];
 
@@ -17,12 +17,14 @@ const cardList = [
   {
     image: "/assets/images/album2.jpg",
     title: "New Arrivals",
-    msg: "Check out the latest Vinyls and grab this limited edition.",
+    msg: "Check out the latest wearables collections.",
+    category: "Wearables",
   },
   {
     image: "/assets/images/taylor-swift-album.jpg",
-    title: "New Albums",
-    msg: "Check out the latest album and grab this limited edition.",
+    title: "All Categories",
+    msg: "Check out the latest collection and grab the limited edition.",
+    category: "",
   },
 ];
 
