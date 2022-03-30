@@ -92,6 +92,17 @@ body {
   height: var(--xl-size);
 }
 
+.form {
+  width: 35rem;
+}
+.form-container {
+  border: 1px solid var(--secondary-color);
+}
+
+.input-width {
+  width: 30rem;
+}
+
 @media screen and (max-width: 54em) {
   html {
     font-size: 35%;
