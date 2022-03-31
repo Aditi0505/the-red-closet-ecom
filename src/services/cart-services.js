@@ -8,7 +8,7 @@ export const addToCartHandler = async (
 ) => {
   try {
     //api
-    const data = await axios.post(
+    await axios.post(
       "/api/user/cart",
       { product },
       {
@@ -21,7 +21,6 @@ export const addToCartHandler = async (
       type: "ADD_TO_CART",
       payload: product,
     });
-    console.log(data);
   } catch (e) {
     toastDispatch({
       type: "SHOW",
@@ -113,7 +112,60 @@ export const removeFromCartHandler = async (
   } catch (e) {
     toastDispatch({
       type: "SHOW",
-      payload: "Cannot delete from cart right now.",
+      payload: "Cannot remove from cart right now.",
+    });
+  }
+};
+
+export const addToWishlistHandler = async (
+  product,
+  cartDispatch,
+  toastDispatch
+) => {
+  try {
+    //api
+    const data = await axios.post(
+      "/api/user/wishlist",
+      { product },
+      {
+        headers: {
+          authorization: encodedToken,
+        },
+      }
+    );
+    cartDispatch({
+      type: "ADD_TO_WISHLIST",
+      payload: product,
+    });
+    console.log(data);
+  } catch (e) {
+    toastDispatch({
+      type: "SHOW",
+      payload: "Cannot add to wishlist right now.",
+    });
+  }
+};
+
+export const removeFromWishlistHandler = async (
+  product,
+  cartDispatch,
+  toastDispatch
+) => {
+  try {
+    //api
+    await axios.delete("/api/user/wishlist/:productId", {
+      headers: {
+        authorization: encodedToken,
+      },
+    });
+    cartDispatch({
+      type: "REMOVE_FROM_WISHLIST",
+      payload: product,
+    });
+  } catch (e) {
+    toastDispatch({
+      type: "SHOW",
+      payload: "Cannot remove from wishlist right now.",
     });
   }
 };
