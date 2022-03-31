@@ -1,7 +1,13 @@
-import { useCart } from "../../context";
+import { useCart, useToast } from "../../context";
+import {
+  decreaseQuantityHandler,
+  increaseQuantityHandler,
+  removeFromCartHandler,
+} from "../../services/cart-services";
 
 const CartProduct = ({ product }) => {
   const { cartDispatch } = useCart();
+  const { toastDispatch } = useToast();
   return (
     <div className="card-container-horizontal">
       <div className="card-inner-container-horizontal">
@@ -26,10 +32,7 @@ const CartProduct = ({ product }) => {
                 disabled
                 className="btn btn-icon"
                 onClick={() =>
-                  cartDispatch({
-                    type: "DECREASE_CART_QUANTITY",
-                    payload: product,
-                  })
+                  decreaseQuantityHandler(product, cartDispatch, toastDispatch)
                 }
               >
                 <i className="fas fa-minus"></i>
@@ -38,10 +41,7 @@ const CartProduct = ({ product }) => {
               <button
                 className="btn btn-icon"
                 onClick={() =>
-                  cartDispatch({
-                    type: "DECREASE_CART_QUANTITY",
-                    payload: product,
-                  })
+                  decreaseQuantityHandler(product, cartDispatch, toastDispatch)
                 }
               >
                 <i className="fas fa-minus"></i>
@@ -51,10 +51,7 @@ const CartProduct = ({ product }) => {
             <button
               className="btn btn-icon"
               onClick={() =>
-                cartDispatch({
-                  type: "INCREASE_CART_QUANTITY",
-                  payload: product,
-                })
+                increaseQuantityHandler(product, cartDispatch, toastDispatch)
               }
             >
               <i className="fa fa-plus"></i>
@@ -64,10 +61,7 @@ const CartProduct = ({ product }) => {
             <button
               className="full-width btn btn-secondary"
               onClick={() =>
-                cartDispatch({
-                  type: "REMOVE_FROM_CART",
-                  payload: product,
-                })
+                removeFromCartHandler(product, cartDispatch, toastDispatch)
               }
             >
               Remove from Cart
