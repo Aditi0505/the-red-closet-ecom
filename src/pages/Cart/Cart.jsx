@@ -2,17 +2,35 @@ import { useEffect } from "react";
 import { CartProduct } from "../../components";
 import { useCart, useToast } from "../../context";
 import { setTitle } from "../../utils/set-title";
+import axios from "axios";
+import { encodedToken } from "../../token";
 const Cart = () => {
   const title = "The Red Closet | Cart";
   setTitle(title);
   const { cartState } = useCart();
   const { toastDispatch } = useToast();
   const totalCartAmount = Number(cartState.totalPrice) + 499;
+
   useEffect(() => {
     toastDispatch({ type: "HIDE", payload: "" });
     cartState.itemsInCart.length <= 0 &&
       toastDispatch({ type: "SHOW", payload: "No items added in the cart" });
+    (async () => {
+      try {
+        await axios.get("/api/user/cart", {
+          headers: {
+            authorization: encodedToken,
+          },
+        });
+      } catch {
+        toastDispatch({
+          type: "SHOW",
+          payload: "No items to show in the cart at the moment",
+        });
+      }
+    })();
   }, [cartState.itemsInCart.length, toastDispatch]);
+
   return (
     <main className="outer-wrapper">
       <section className="display-screen">
