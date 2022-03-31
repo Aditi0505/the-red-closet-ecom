@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { useCart, useToast } from "../../context";
-import { addToCartHandler } from "../../services/cart-services";
+import {
+  addToCartHandler,
+  addToWishlistHandler,
+  removeFromWishlistHandler,
+} from "../../services/cart-services";
 
 const VerticalCard = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
@@ -54,20 +58,14 @@ const VerticalCard = ({ product }) => {
             <i
               className="fas fa-heart"
               onClick={() =>
-                cartDispatch({
-                  type: "REMOVE_FROM_WISHLIST",
-                  payload: product,
-                })
+                removeFromWishlistHandler(product, cartDispatch, toastDispatch)
               }
             ></i>
           ) : (
             <i
               className="far fa-heart"
               onClick={() =>
-                cartDispatch({
-                  type: "ADD_TO_WISHLIST",
-                  payload: product,
-                })
+                addToWishlistHandler(product, cartDispatch, toastDispatch)
               }
             ></i>
           )}
