@@ -2,6 +2,7 @@ import { useCart, useToast } from "../../context";
 import {
   decreaseQuantityHandler,
   increaseQuantityHandler,
+  moveToWishlistHandler,
   removeFromCartHandler,
 } from "../../services/cart-services";
 
@@ -69,10 +70,7 @@ const CartProduct = ({ product }) => {
             <button
               className="full-width btn btn-outline-secondary"
               onClick={() =>
-                cartDispatch({
-                  type: "MOVE_TO_WISHLIST",
-                  payload: product,
-                })
+                moveToWishlistHandler(product, cartDispatch, toastDispatch)
               }
             >
               Move to Wishlist
