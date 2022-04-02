@@ -4,7 +4,7 @@ import {
   increaseQuantityHandler,
   moveToWishlistHandler,
   removeFromCartHandler,
-} from "../../services/cart-services";
+} from "../../services";
 
 const CartProduct = ({ product }) => {
   const { cartDispatch } = useCart();

@@ -125,7 +125,7 @@ export const addToWishlistHandler = async (
 ) => {
   try {
     //api
-    const data = await axios.post(
+    await axios.post(
       "/api/user/wishlist",
       { product },
       {
@@ -138,7 +138,6 @@ export const addToWishlistHandler = async (
       type: "ADD_TO_WISHLIST",
       payload: product,
     });
-    console.log(data);
   } catch (e) {
     toastDispatch({
       type: "SHOW",

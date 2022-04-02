@@ -4,7 +4,7 @@ import {
   addToCartHandler,
   addToWishlistHandler,
   removeFromWishlistHandler,
-} from "../../services/cart-services";
+} from "../../services";
 
 const VerticalCard = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
