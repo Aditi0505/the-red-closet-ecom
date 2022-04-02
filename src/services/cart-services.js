@@ -8,7 +8,7 @@ export const addToCartHandler = async (
 ) => {
   try {
     //api
-    await axios.post(
+    const data = await axios.post(
       "/api/user/cart",
       { product },
       {
@@ -21,6 +21,7 @@ export const addToCartHandler = async (
       type: "ADD_TO_CART",
       payload: product,
     });
+    console.log(data);
   } catch (e) {
     toastDispatch({
       type: "SHOW",
@@ -37,7 +38,7 @@ export const increaseQuantityHandler = async (
   try {
     //api
     await axios.post(
-      `/api/user/cart/:${product._id}`,
+      `/api/user/cart/${product._id}`,
       {
         action: {
           type: "increment",
@@ -69,7 +70,7 @@ export const decreaseQuantityHandler = async (
   try {
     //api
     await axios.post(
-      `/api/user/cart/:${product._id}`,
+      `/api/user/cart/${product._id}`,
       {
         action: {
           type: "decrement",
@@ -100,7 +101,7 @@ export const removeFromCartHandler = async (
 ) => {
   try {
     //api
-    await axios.delete(`/api/user/cart/:${product._id}`, {
+    const data = await axios.delete(`/api/user/cart/${product._id}`, {
       //1
       headers: {
         authorization: encodedToken,
@@ -110,6 +111,7 @@ export const removeFromCartHandler = async (
       type: "REMOVE_FROM_CART",
       payload: product,
     });
+    console.log(data);
   } catch (e) {
     toastDispatch({
       type: "SHOW",
@@ -153,7 +155,7 @@ export const removeFromWishlistHandler = async (
 ) => {
   try {
     //api
-    await axios.delete(`/api/user/wishlist/:${product._id}`, {
+    await axios.delete(`/api/user/wishlist/${product._id}`, {
       headers: {
         authorization: encodedToken,
       },
@@ -177,7 +179,7 @@ export const moveToWishlistHandler = async (
 ) => {
   try {
     //api
-    await axios.delete(`/api/user/cart/:${product._id}`, {
+    await axios.delete(`/api/user/cart/${product._id}`, {
       headers: {
         authorization: encodedToken,
       },
