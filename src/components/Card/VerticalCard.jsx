@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../context";
+import { useCart, useToast } from "../../context";
+import {
+  addToCartHandler,
+  addToWishlistHandler,
+  removeFromWishlistHandler,
+} from "../../services";
 
 const VerticalCard = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
+  const { toastDispatch } = useToast();
   return (
     <div className="card">
       <div className="card-inner-container">
@@ -37,10 +43,7 @@ const VerticalCard = ({ product }) => {
           <button
             className="btn-primary btn flex-center full-width padding-xs margin"
             onClick={() =>
-              cartDispatch({
-                type: "ADD_TO_CART",
-                payload: product,
-              })
+              addToCartHandler(product, cartDispatch, toastDispatch)
             }
           >
             Add To Cart
@@ -55,20 +58,14 @@ const VerticalCard = ({ product }) => {
             <i
               className="fas fa-heart"
               onClick={() =>
-                cartDispatch({
-                  type: "REMOVE_FROM_WISHLIST",
-                  payload: product,
-                })
+                removeFromWishlistHandler(product, cartDispatch, toastDispatch)
               }
             ></i>
           ) : (
             <i
               className="far fa-heart"
               onClick={() =>
-                cartDispatch({
-                  type: "ADD_TO_WISHLIST",
-                  payload: product,
-                })
+                addToWishlistHandler(product, cartDispatch, toastDispatch)
               }
             ></i>
           )}

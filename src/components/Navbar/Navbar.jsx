@@ -17,19 +17,24 @@ const NavBar = () => {
             </Link>
           </div>
         </nav>
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="🔍 Search"
-          onChange={(e) =>
-            filterDispatch({
-              type: "FILTER_BY_SEARCH",
-              payload: e.target.value,
-            })
-          }
-          value={filterState.searchKeyword}
-        />
+        {location.pathname === "/products" ? (
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="🔍 Search"
+            onChange={(e) =>
+              filterDispatch({
+                type: "FILTER_BY_SEARCH",
+                payload: e.target.value,
+              })
+            }
+            value={filterState.searchKeyword}
+          />
+        ) : (
+          ""
+        )}
+
         <ul className="nav-icons">
           {location.pathname === "/" ? (
             <Button buttonState={"Login"} route="login" />
