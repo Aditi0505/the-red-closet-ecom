@@ -36,7 +36,12 @@
 - From the navbar, User can navigate to wishlist where all the products to buy are present.
 - User can remove the product from the wishlist.
 - User can add the product to the Cart.
+#### Search
+- User can search for an item from the list via the input textbox on the header navbar.
 ---
+#### Alert
+- User can see a toast when there is no item in cart
+- User can see a toast when there is no item in wishlist
 ### Features to be implemented soon
 - Authentication
 - Single Product Page
