@@ -1,4 +1,4 @@
-const Input = ({ inputType, label, placeholder }) => {
+const Input = ({ inputType, label, placeholder, inputHandler, value }) => {
   return (
     <>
       <label
@@ -14,6 +14,8 @@ const Input = ({ inputType, label, placeholder }) => {
         id={inputType}
         className="inputBox margin-tb-sm padding-xs input-width"
         placeholder={placeholder}
+        onChange={(e) => inputHandler(e, inputType)}
+        value={value}
       />
     </>
   );

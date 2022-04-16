@@ -1,11 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Input } from "../../../components";
+import { useAuth } from "../../../context/auth-context";
 import { setTitle } from "../../../utils/set-title";
+import { useToast } from "../../../context";
+import { loginHandler } from "../../../services/auth-services";
 const Login = () => {
   const title = "The Red Closet | Login";
   setTitle(title);
+  const { authDispatch } = useAuth();
+  const { toastDispatch } = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  
+  const handleInput = (e, value) => {
+    if (value === "password") {
+      setPassword(e.target.value);
+    }
+    if (value === "email") {
+      setUserName(e.target.value);
+    }
+  };
 
-  const handleInput = () => {};
   return (
     <main className="outer-wrapper flex-spbt">
       <section className="screen flex-spbt">
@@ -19,6 +37,8 @@ const Login = () => {
                 inputType="email"
                 label="Email Address"
                 placeholder="redcloset@gmail.com"
+                inputHandler={handleInput}
+                value={userName}
               />
             </div>
             <div className="text-left padding-xs">
@@ -26,6 +46,8 @@ const Login = () => {
                 inputType="password"
                 label="Password"
                 placeholder="*****************"
+                inputHandler={handleInput}
+                value={password}
               />
             </div>
 
@@ -52,8 +74,18 @@ const Login = () => {
             </div>
 
             <button
+              type="button"
               className="btn btn-primary margin-tb-sm"
-              onClick={handleInput}
+              onClick={() => {
+                loginHandler(
+                  userName,
+                  password,
+                  authDispatch,
+                  toastDispatch,
+                  navigate,
+                  location
+                );
+              }}
             >
               Login To Your Account
             </button>
