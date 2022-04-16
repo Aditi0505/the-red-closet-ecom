@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { CartProduct } from "../../components";
-import { useCart, useToast } from "../../context";
+import { useCart, useToast, useAuth } from "../../context";
 import { setTitle } from "../../utils/set-title";
 import axios from "axios";
-import { encodedToken } from "../../token";
 const Cart = () => {
   const title = "The Red Closet | Cart";
   setTitle(title);
   const { cartState } = useCart();
   const { toastDispatch } = useToast();
+  const { authState } = useAuth();
   const totalCartAmount = Number(cartState.totalPrice) + 499;
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Cart = () => {
       try {
         await axios.get("/api/user/cart", {
           headers: {
-            authorization: encodedToken,
+            authorization: authState.encodedToken,
           },
         });
       } catch {
@@ -29,7 +29,7 @@ const Cart = () => {
         });
       }
     })();
-  }, [cartState.itemsInCart.length, toastDispatch]);
+  }, [cartState.itemsInCart.length, toastDispatch, authState.encodedToken]);
 
   return (
     <main className="outer-wrapper">

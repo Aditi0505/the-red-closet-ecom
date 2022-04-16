@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { VerticalCard } from "../../components";
-import { useCart, useToast } from "../../context";
+import { useCart, useToast, useAuth } from "../../context";
 import { setTitle } from "../../utils/set-title";
 import axios from "axios";
-import { encodedToken } from "../../token";
 
 const Wishlist = () => {
   const title = "The Red Closet | Wishlist";
   setTitle(title);
   const { cartState } = useCart();
   const { toastDispatch } = useToast();
-
+  const { authState } = useAuth();
   useEffect(() => {
     toastDispatch({ type: "HIDE", payload: "" });
     cartState.wishlistItems.length <= 0 &&
@@ -22,7 +21,7 @@ const Wishlist = () => {
       try {
         await axios.get("/api/user/wishlist", {
           headers: {
-            authorization: encodedToken,
+            authorization: authState.encodedToken,
           },
         });
       } catch {
@@ -32,7 +31,7 @@ const Wishlist = () => {
         });
       }
     })();
-  }, [cartState.wishlistItems.length, toastDispatch]);
+  }, [cartState.wishlistItems.length, toastDispatch, authState.encodedToken]);
 
   return (
     <main className="outer-wrapper flex-spbt">
