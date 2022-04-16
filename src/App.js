@@ -1,9 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import { Home, ProductListing, Cart, Wishlist, Login, Signup } from "./pages";
 import { Footer, NavBar, Toast } from "./components";
-import { ToastProvider, FilterProvider, CartProvider } from "./context";
+import {
+  ToastProvider,
+  FilterProvider,
+  CartProvider,
+  AuthProvider,
+} from "./context";
 import Mockman from "mockman-js";
-import { AuthProvider } from "./context/auth-context";
 import { RequiresAuth } from "./components/Auth/RequiresAuth";
 const App = () => {
   return (

@@ -1,8 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "../Pills/Pills";
 import { Button } from "../Button/Button";
-import { useCart, useFilter } from "../../context";
-import { useAuth } from "../../context/auth-context";
+import { useCart, useFilter, useAuth } from "../../context";
 const NavBar = () => {
   const location = useLocation();
   const { filterState, filterDispatch } = useFilter();

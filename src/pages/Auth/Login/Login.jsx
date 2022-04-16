@@ -1,10 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "../../../components";
-import { useAuth } from "../../../context/auth-context";
 import { setTitle } from "../../../utils/set-title";
-import { useToast } from "../../../context";
-import { loginHandler } from "../../../services/auth-services";
+import { useToast, useAuth } from "../../../context";
+import { loginHandler } from "../../../services";
 const Login = () => {
   const title = "The Red Closet | Login";
   setTitle(title);
@@ -14,7 +13,7 @@ const Login = () => {
   const location = useLocation();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const handleInput = (e, value) => {
     if (value === "password") {
       setPassword(e.target.value);
