@@ -103,6 +103,20 @@ body {
   width: 30rem;
 }
 
+.sign-up{
+  margin-top:6rem;
+  margin-bottom:0;
+}
+
+.showPassword{
+  position: absolute;
+  right: 2rem;
+  top:5.5rem;
+  cursor: pointer;
+}
+.passwordBox{
+  position: relative;
+}
 @media screen and (max-width: 54em) {
   html {
     font-size: 35%;

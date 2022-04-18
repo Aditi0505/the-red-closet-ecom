@@ -11,10 +11,10 @@ const Input = ({ inputType, label, placeholder, inputHandler, value }) => {
         type={inputType}
         required
         name={inputType}
-        id={inputType}
+        id={label.toLowerCase()}
         className="inputBox margin-tb-sm padding-xs input-width"
         placeholder={placeholder}
-        onChange={(e) => inputHandler(e, inputType)}
+        onChange={(e) => inputHandler(e, label.toLowerCase())}
         value={value}
       />
     </>

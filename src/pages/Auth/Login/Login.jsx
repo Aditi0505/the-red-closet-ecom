@@ -13,12 +13,16 @@ const Login = () => {
   const location = useLocation();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
+  const showPasswordHandler = () => {
+    setShowPassword((prev) => !prev);
+  };
   const handleInput = (e, value) => {
     if (value === "password") {
       setPassword(e.target.value);
     }
-    if (value === "email") {
+    if (value === "email address") {
       setUserName(e.target.value);
     }
   };
@@ -40,22 +44,42 @@ const Login = () => {
                 value={userName}
               />
             </div>
-            <div className="text-left padding-xs">
-              <Input
-                inputType="password"
-                label="Password"
-                placeholder="*****************"
-                inputHandler={handleInput}
-                value={password}
-              />
-            </div>
+            {showPassword ? (
+              <div className="text-left padding-xs passwordBox">
+                <Input
+                  inputType="text"
+                  label="Password"
+                  placeholder="*****************"
+                  inputHandler={handleInput}
+                  value={password}
+                />
+                <i
+                  className="fa fa-eye showPassword"
+                  onClick={showPasswordHandler}
+                ></i>
+              </div>
+            ) : (
+              <div className="text-left padding-xs passwordBox">
+                <Input
+                  inputType="password"
+                  label="Password"
+                  placeholder="*****************"
+                  inputHandler={handleInput}
+                  value={password}
+                />
+                <i
+                  className="fa fa-eye showPassword"
+                  onClick={showPasswordHandler}
+                ></i>
+              </div>
+            )}
 
             <div>
               <input
                 type="checkbox"
                 required
-                name="checkbox"
-                id="checkbox"
+                name="remember"
+                id="remember"
                 className="inputBox margin-tb-sm"
               />
               <label
