@@ -21,6 +21,10 @@ export const addToCartHandler = async (
       type: "ADD_TO_CART",
       payload: product,
     });
+    toastDispatch({
+      type: "SHOW",
+      payload: "Product added to the cart.",
+    });
   } catch (e) {
     toastDispatch({
       type: "SHOW",
