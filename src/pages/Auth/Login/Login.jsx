@@ -26,7 +26,22 @@ const Login = () => {
       setUserName(e.target.value);
     }
   };
-
+  const guestLoginHandler = () => {
+    const user = {
+      email: "aditi@gmail.com",
+      password: "aditi123",
+    };
+    setUserName(user.email);
+    setPassword(user.password);
+    loginHandler(
+      user.email,
+      user.password,
+      authDispatch,
+      toastDispatch,
+      navigate,
+      location
+    );
+  };
   return (
     <main className="outer-wrapper flex-spbt">
       <section className="screen flex-spbt">
@@ -74,27 +89,13 @@ const Login = () => {
               </div>
             )}
 
-            <div>
-              <input
-                type="checkbox"
-                required
-                name="remember"
-                id="remember"
-                className="inputBox margin-tb-sm"
-              />
-              <label
-                htmlFor="remember"
-                className="label-content text-sm padding-xs"
-              >
-                Remember me
-              </label>
-              <Link
-                to="/"
-                className="text text-right text-sm ft-light padding-xs"
-              >
-                Forgot password
-              </Link>
-            </div>
+            <button
+              type="button"
+              className="btn btn-outline-primary margin-tb-sm"
+              onClick={guestLoginHandler}
+            >
+              Login- Guest Account
+            </button>
 
             <button
               type="button"
