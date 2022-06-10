@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
+import { useFilter } from "../../context";
 const Banner = ({ image, banner }) => {
+  const { filterDispatch } = useFilter();
   return (
     <div className="small-banner">
       <div className="card">
         <div className="card-inner-container">
           <div className="card-image-overlay opacity">
             <Link to="/products" state={banner}>
-              <img src={image} alt="Taylor Swift" className="img" />
+              <img
+                src={image}
+                alt="Taylor Swift"
+                className="img"
+                onClick={() =>
+                  filterDispatch({
+                    type: "CLEAR",
+                  })
+                }
+              />
             </Link>
           </div>
           <div className="hide card-body-overlay opacity">
