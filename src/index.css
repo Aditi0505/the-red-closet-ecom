@@ -85,7 +85,9 @@ body {
   left: 50%;
   transform: translate(-50%, 0);
 }
-
+.btn-container {
+  width: 4rem;
+}
 /* cart */
 .custom-width {
   width: var(--xl-size);
@@ -103,19 +105,22 @@ body {
   width: 30rem;
 }
 
-.sign-up{
-  margin-top:6rem;
-  margin-bottom:0;
+.sign-up {
+  margin-top: 6rem;
+  margin-bottom: 0;
 }
 
-.showPassword{
+.showPassword {
   position: absolute;
   right: 2rem;
-  top:5.5rem;
+  top: 5.5rem;
   cursor: pointer;
 }
-.passwordBox{
+.passwordBox {
   position: relative;
+}
+img {
+  object-fit: cover;
 }
 @media screen and (max-width: 54em) {
   html {
