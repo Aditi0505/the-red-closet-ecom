@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useCart, useToast } from "../../context";
 import {
   addToCartHandler,
@@ -10,6 +10,7 @@ const VerticalCard = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
   const { toastDispatch } = useToast();
   const { authState } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="card">
       <div className="card-inner-container">
@@ -44,7 +45,14 @@ const VerticalCard = ({ product }) => {
           <button
             className="btn-primary btn flex-center full-width padding-xs margin"
             onClick={() =>
-              addToCartHandler(product, authState, cartDispatch, toastDispatch)
+              authState.encodedToken
+                ? addToCartHandler(
+                    product,
+                    authState,
+                    cartDispatch,
+                    toastDispatch
+                  )
+                : navigate("/login")
             }
           >
             Add To Cart
@@ -71,12 +79,14 @@ const VerticalCard = ({ product }) => {
             <i
               className="far fa-heart"
               onClick={() =>
-                addToWishlistHandler(
-                  product,
-                  authState,
-                  cartDispatch,
-                  toastDispatch
-                )
+                authState.encodedToken
+                  ? addToWishlistHandler(
+                      product,
+                      authState,
+                      cartDispatch,
+                      toastDispatch
+                    )
+                  : navigate("/login")
               }
             ></i>
           )}

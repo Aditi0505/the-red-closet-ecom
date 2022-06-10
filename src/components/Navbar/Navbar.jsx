@@ -44,7 +44,7 @@ const NavBar = () => {
             ) : location.pathname === "/signup" ? (
               <Button buttonState={"Login"} route="login" />
             ) : (
-              <Button buttonState={"Logout"} route="" />
+              <Button buttonState={"Login"} route="login" />
             )}
             <NavLink
               linkTo="/wishlist"
