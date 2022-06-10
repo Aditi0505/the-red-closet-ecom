@@ -34,23 +34,47 @@ const Signup = () => {
       setConfirmPassword(e.target.value);
     }
   };
-
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+  };
   const validateHandler = () => {
-    const isValid = validateFields(userName, password, confirmPassword);
-    if (isValid) {
-      signupHandler(
-        userName,
-        password,
-        authDispatch,
-        toastDispatch,
-        navigate,
-        location
-      );
-    } else {
+    if (!userName && !password && !confirmPassword) {
       toastDispatch({
         type: "SHOW",
-        payload: "Email or Password is incorrect",
+        payload: "Please enter valid credentials",
       });
+    } else if (!confirmPassword && !password) {
+      toastDispatch({
+        type: "SHOW",
+        payload: "Please enter valid password",
+      });
+    } else if (!confirmPassword && password) {
+      toastDispatch({
+        type: "SHOW",
+        payload: "Please confirm password",
+      });
+    } else if (!userName) {
+      toastDispatch({
+        type: "SHOW",
+        payload: "Please enter valid username",
+      });
+    } else {
+      const isValid = validateFields(userName, password, confirmPassword);
+      if (isValid) {
+        signupHandler(
+          userName,
+          password,
+          authDispatch,
+          toastDispatch,
+          navigate,
+          location
+        );
+      } else {
+        toastDispatch({
+          type: "SHOW",
+          payload: "Password does not match!",
+        });
+      }
     }
   };
   return (
@@ -60,7 +84,7 @@ const Signup = () => {
           <div className="card-title">
             <h3>Signup</h3>
           </div>
-          <form className="card-desc form">
+          <form className="card-desc form" onSubmit={formSubmitHandler}>
             <div className="text-left padding-xs">
               <Input
                 inputType="email"
@@ -129,23 +153,6 @@ const Signup = () => {
                 ></i>
               </div>
             )}
-
-            <div>
-              <input
-                type="checkbox"
-                required
-                name="terms"
-                id="terms"
-                className="inputBox margin-tb-sm"
-              />
-              <label
-                htmlFor="terms"
-                className="label-content text-sm padding-xs"
-              >
-                I accept all terms and conditions
-              </label>
-            </div>
-
             <button
               className="btn btn-primary margin-tb-sm"
               onClick={validateHandler}
