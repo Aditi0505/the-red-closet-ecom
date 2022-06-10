@@ -145,6 +145,10 @@ export const addToWishlistHandler = async (
       type: "ADD_TO_WISHLIST",
       payload: product,
     });
+    toastDispatch({
+      type: "SHOW",
+      payload: "Product added to the wishlist.",
+    });
   } catch (e) {
     toastDispatch({
       type: "SHOW",
