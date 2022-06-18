@@ -23,7 +23,7 @@ const CartProduct = ({ product }) => {
         <div className="flex-center card-body-horizontal">
           <div className="card-title-horizontal">{product.title}</div>
           <div className="card-desc-horizontal">
-            {`$ ${product.price} `}
+            {`₹ ${product.price} `}
             <span className="striked">{product.originalPrice}</span>
           </div>
           <div className="card-desc-horizontal">50% off</div>
