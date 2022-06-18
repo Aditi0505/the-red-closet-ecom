@@ -70,6 +70,15 @@ const NavBar = () => {
               iconclassName={"fas fa-shopping-cart"}
               badgeCount={cartState.itemsInCart.length}
             />
+            {authState.isLoggedIn && (
+              <li>
+                <Link to="/user" className="nav-icon">
+                  <div className="badge">
+                    <i className={`badge-icon fas fa-user`}></i>
+                  </div>
+                </Link>
+              </li>
+            )}
           </ul>
         )}
       </header>
