@@ -5,12 +5,14 @@ export const authReducer = (state, { type, payload }) => {
         ...state,
         isSignedUp: true,
         encodedToken: payload.data.data.encodedToken,
+        user: payload.data.data.foundUser,
       };
     case "LOGIN":
       return {
         ...state,
         isLoggedIn: true,
         encodedToken: payload.data.data.encodedToken,
+        user: payload.data.data.foundUser,
       };
     case "LOGOUT":
       return {
@@ -18,6 +20,7 @@ export const authReducer = (state, { type, payload }) => {
         isLoggedIn: false,
         isLoggedOut: true,
         encodedToken: payload,
+        user: null,
       };
     default:
       return state;
