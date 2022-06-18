@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { NavLink } from "../Pills/Pills";
 import { Button } from "../Button/Button";
-import { useCart, useFilter } from "../../context";
+import { useCart, useFilter, useAuth } from "../../context";
 const NavBar = () => {
   const location = useLocation();
   const { filterState, filterDispatch } = useFilter();
   const { cartState } = useCart();
+  const { authState } = useAuth();
   return (
     <div>
       <header className="desktop-navigation position-fixed">
@@ -34,28 +35,43 @@ const NavBar = () => {
         ) : (
           ""
         )}
-
-        <ul className="nav-icons">
-          {location.pathname === "/" ? (
-            <Button buttonState={"Login"} route="login" />
-          ) : location.pathname === "/login" ? (
-            <Button buttonState={"Signup"} route="signup" />
-          ) : location.pathname === "/signup" ? (
-            <Button buttonState={"Login"} route="login" />
-          ) : (
+        {!authState.isLoggedIn && !authState.IsLoggedOut ? (
+          <ul className="nav-icons">
+            {location.pathname === "/" ? (
+              <Button buttonState={"Login"} route="login" />
+            ) : location.pathname === "/login" ? (
+              <Button buttonState={"Signup"} route="signup" />
+            ) : location.pathname === "/signup" ? (
+              <Button buttonState={"Login"} route="login" />
+            ) : (
+              <Button buttonState={"Login"} route="login" />
+            )}
+            <NavLink
+              linkTo="/wishlist"
+              iconclassName={"fas fa-heart"}
+              badgeCount="0"
+            />
+            <NavLink
+              linkTo="/cart"
+              iconclassName={"fas fa-shopping-cart"}
+              badgeCount="0"
+            />
+          </ul>
+        ) : (
+          <ul className="nav-icons">
             <Button buttonState={"Logout"} route="" />
-          )}
-          <NavLink
-            linkTo="/wishlist"
-            iconclassName={"fas fa-heart"}
-            badgeCount={cartState.wishlistItems.length}
-          />
-          <NavLink
-            linkTo="/cart"
-            iconclassName={"fas fa-shopping-cart"}
-            badgeCount={cartState.itemsInCart.length}
-          />
-        </ul>
+            <NavLink
+              linkTo="/wishlist"
+              iconclassName={"fas fa-heart"}
+              badgeCount={cartState.wishlistItems.length}
+            />
+            <NavLink
+              linkTo="/cart"
+              iconclassName={"fas fa-shopping-cart"}
+              badgeCount={cartState.itemsInCart.length}
+            />
+          </ul>
+        )}
       </header>
     </div>
   );

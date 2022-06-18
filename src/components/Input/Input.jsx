@@ -1,4 +1,4 @@
-const Input = ({ inputType, label, placeholder }) => {
+const Input = ({ inputType, label, placeholder, inputHandler, value }) => {
   return (
     <>
       <label
@@ -11,9 +11,11 @@ const Input = ({ inputType, label, placeholder }) => {
         type={inputType}
         required
         name={inputType}
-        id={inputType}
+        id={label.toLowerCase()}
         className="inputBox margin-tb-sm padding-xs input-width"
         placeholder={placeholder}
+        onChange={(e) => inputHandler(e, label.toLowerCase())}
+        value={value}
       />
     </>
   );

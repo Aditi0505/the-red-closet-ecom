@@ -1,3 +1,4 @@
+export { loginHandler, signupHandler } from "./auth-services";
 export {
   addToCartHandler,
   increaseQuantityHandler,

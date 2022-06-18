@@ -1,11 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Input } from "../../../components";
 import { setTitle } from "../../../utils/set-title";
+import { useToast, useAuth } from "../../../context";
+import { loginHandler } from "../../../services";
 const Login = () => {
   const title = "The Red Closet | Login";
   setTitle(title);
+  const { authDispatch } = useAuth();
+  const { toastDispatch } = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleInput = () => {};
+  const showPasswordHandler = () => {
+    setShowPassword((prev) => !prev);
+  };
+  const handleInput = (e, value) => {
+    if (value === "password") {
+      setPassword(e.target.value);
+    }
+    if (value === "email address") {
+      setUserName(e.target.value);
+    }
+  };
+  const guestLoginHandler = () => {
+    const user = {
+      email: "aditi@gmail.com",
+      password: "aditi123",
+    };
+    setUserName(user.email);
+    setPassword(user.password);
+    loginHandler(
+      user.email,
+      user.password,
+      authDispatch,
+      toastDispatch,
+      navigate,
+      location
+    );
+  };
   return (
     <main className="outer-wrapper flex-spbt">
       <section className="screen flex-spbt">
@@ -19,41 +55,61 @@ const Login = () => {
                 inputType="email"
                 label="Email Address"
                 placeholder="redcloset@gmail.com"
+                inputHandler={handleInput}
+                value={userName}
               />
             </div>
-            <div className="text-left padding-xs">
-              <Input
-                inputType="password"
-                label="Password"
-                placeholder="*****************"
-              />
-            </div>
-
-            <div>
-              <input
-                type="checkbox"
-                required
-                name="checkbox"
-                id="checkbox"
-                className="inputBox margin-tb-sm"
-              />
-              <label
-                htmlFor="remember"
-                className="label-content text-sm padding-xs"
-              >
-                Remember me
-              </label>
-              <Link
-                to="/"
-                className="text text-right text-sm ft-light padding-xs"
-              >
-                Forgot password
-              </Link>
-            </div>
+            {showPassword ? (
+              <div className="text-left padding-xs passwordBox">
+                <Input
+                  inputType="text"
+                  label="Password"
+                  placeholder="*****************"
+                  inputHandler={handleInput}
+                  value={password}
+                />
+                <i
+                  className="fa fa-eye showPassword"
+                  onClick={showPasswordHandler}
+                ></i>
+              </div>
+            ) : (
+              <div className="text-left padding-xs passwordBox">
+                <Input
+                  inputType="password"
+                  label="Password"
+                  placeholder="*****************"
+                  inputHandler={handleInput}
+                  value={password}
+                />
+                <i
+                  className="fa fa-eye showPassword"
+                  onClick={showPasswordHandler}
+                ></i>
+              </div>
+            )}
 
             <button
+              type="button"
+              className="btn btn-outline-primary margin-tb-sm"
+              onClick={guestLoginHandler}
+            >
+              Login- Guest Account
+            </button>
+
+            <button
+              type="button"
               className="btn btn-primary margin-tb-sm"
-              onClick={handleInput}
+              onClick={() => {
+                loginHandler(
+                  userName,
+                  password,
+                  authDispatch,
+                  toastDispatch,
+                  navigate,
+                  location
+                );
+              }}
             >
               Login To Your Account
             </button>

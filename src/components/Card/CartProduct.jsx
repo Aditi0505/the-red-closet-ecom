@@ -1,4 +1,4 @@
-import { useCart, useToast } from "../../context";
+import { useAuth, useCart, useToast } from "../../context";
 import {
   decreaseQuantityHandler,
   increaseQuantityHandler,
@@ -9,6 +9,7 @@ import {
 const CartProduct = ({ product }) => {
   const { cartDispatch } = useCart();
   const { toastDispatch } = useToast();
+  const { authState } = useAuth();
   return (
     <div className="card-container-horizontal">
       <div className="card-inner-container-horizontal">
@@ -33,7 +34,12 @@ const CartProduct = ({ product }) => {
                 disabled
                 className="btn btn-icon"
                 onClick={() =>
-                  decreaseQuantityHandler(product, cartDispatch, toastDispatch)
+                  decreaseQuantityHandler(
+                    product,
+                    authState,
+                    cartDispatch,
+                    toastDispatch
+                  )
                 }
               >
                 <i className="fas fa-minus"></i>
@@ -42,7 +48,12 @@ const CartProduct = ({ product }) => {
               <button
                 className="btn btn-icon"
                 onClick={() =>
-                  decreaseQuantityHandler(product, cartDispatch, toastDispatch)
+                  decreaseQuantityHandler(
+                    product,
+                    authState,
+                    cartDispatch,
+                    toastDispatch
+                  )
                 }
               >
                 <i className="fas fa-minus"></i>
@@ -52,7 +63,12 @@ const CartProduct = ({ product }) => {
             <button
               className="btn btn-icon"
               onClick={() =>
-                increaseQuantityHandler(product, cartDispatch, toastDispatch)
+                increaseQuantityHandler(
+                  product,
+                  authState,
+                  cartDispatch,
+                  toastDispatch
+                )
               }
             >
               <i className="fa fa-plus"></i>
@@ -62,7 +78,12 @@ const CartProduct = ({ product }) => {
             <button
               className="full-width btn btn-secondary"
               onClick={() =>
-                removeFromCartHandler(product, cartDispatch, toastDispatch)
+                removeFromCartHandler(
+                  product,
+                  authState,
+                  cartDispatch,
+                  toastDispatch
+                )
               }
             >
               Remove from Cart
@@ -70,7 +91,12 @@ const CartProduct = ({ product }) => {
             <button
               className="full-width btn btn-outline-secondary"
               onClick={() =>
-                moveToWishlistHandler(product, cartDispatch, toastDispatch)
+                moveToWishlistHandler(
+                  product,
+                  authState,
+                  cartDispatch,
+                  toastDispatch
+                )
               }
             >
               Move to Wishlist

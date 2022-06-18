@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
+import { useFilter } from "../../context";
 const HorizontalCard = ({ title, image, msg, category }) => {
+  const { filterDispatch } = useFilter();
+  const categoryHandler = () => {
+    filterDispatch({
+      type: "CLEAR",
+    });
+  };
   return (
     <div className="card-container-horizontal">
       <div className="card-inner-container-horizontal">
@@ -10,7 +17,10 @@ const HorizontalCard = ({ title, image, msg, category }) => {
           <div className="card-title-horizontal">{title}</div>
           <div className="card-desc-horizontal">{msg}</div>
           <Link to="/products" state={category}>
-            <i className="fa fa-arrow-right btn btn-icon"></i>
+            <i
+              className="fa fa-arrow-right btn btn-icon"
+              onClick={categoryHandler}
+            ></i>
           </Link>
         </div>
         <div className="hide-overlay">Women</div>

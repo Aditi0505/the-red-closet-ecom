@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useCart, useToast } from "../../context";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth, useCart, useToast } from "../../context";
 import {
   addToCartHandler,
   addToWishlistHandler,
@@ -9,6 +9,8 @@ import {
 const VerticalCard = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
   const { toastDispatch } = useToast();
+  const { authState } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="card">
       <div className="card-inner-container">
@@ -43,7 +45,14 @@ const VerticalCard = ({ product }) => {
           <button
             className="btn-primary btn flex-center full-width padding-xs margin"
             onClick={() =>
-              addToCartHandler(product, cartDispatch, toastDispatch)
+              authState.encodedToken
+                ? addToCartHandler(
+                    product,
+                    authState,
+                    cartDispatch,
+                    toastDispatch
+                  )
+                : navigate("/login")
             }
           >
             Add To Cart
@@ -58,14 +67,26 @@ const VerticalCard = ({ product }) => {
             <i
               className="fas fa-heart"
               onClick={() =>
-                removeFromWishlistHandler(product, cartDispatch, toastDispatch)
+                removeFromWishlistHandler(
+                  product,
+                  authState,
+                  cartDispatch,
+                  toastDispatch
+                )
               }
             ></i>
           ) : (
             <i
               className="far fa-heart"
               onClick={() =>
-                addToWishlistHandler(product, cartDispatch, toastDispatch)
+                authState.encodedToken
+                  ? addToWishlistHandler(
+                      product,
+                      authState,
+                      cartDispatch,
+                      toastDispatch
+                    )
+                  : navigate("/login")
               }
             ></i>
           )}

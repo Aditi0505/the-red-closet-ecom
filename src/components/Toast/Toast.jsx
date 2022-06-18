@@ -7,7 +7,6 @@ const Toast = () => {
       <div className="leading-toast flex-spbt">
         <div>{toastState.payload}</div>
         <div className="btn-container flex-spbt">
-          <button className="toast-btn toast">RETRY</button>
           <button
             className="toast toast-close"
             onClick={() => toastDispatch({ type: "HIDE", payload: "" })}
