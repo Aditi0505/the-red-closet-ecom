@@ -1,3 +1,4 @@
+@import url("../src/components/Tab/Tab.css");
 /* home layout */
 
 .outer-wrapper {
@@ -93,7 +94,9 @@ body {
   width: var(--xl-size);
   height: var(--xl-size);
 }
-
+.order-img {
+  width: 15rem;
+}
 .form {
   width: 35rem;
 }
