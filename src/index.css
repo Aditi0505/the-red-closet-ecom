@@ -66,6 +66,10 @@ body {
   font-family: var(--body-font);
 }
 
+.confirmed-order {
+  color: var(--accent-green);
+}
+
 /* product listing */
 .product-listing {
   margin-left: 25.6rem;

@@ -1,3 +1,8 @@
+export { OrderHistory } from "./Card/OrderHistory";
+export { UserInfo } from "./UserInfo/UserInfo";
+export { OrderCard } from "./Card/OrderCard";
+export { Tab } from "./Tab/Tab";
+export { Address } from "./Address/Address";
 export { NavLink } from "../components/Pills/Pills";
 export { FooterLink } from "../components/Pills/Pills";
 export { Button } from "../components/Button/Button";
