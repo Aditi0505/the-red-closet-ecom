@@ -1,6 +1,6 @@
 const OrderCard = ({ product }) => {
   return (
-    <div className="card-container-horizontal">
+    <div className="card-container-horizontal full-width">
       <div className="card-inner-container-horizontal">
         <div className="horizontal-card-image">
           <img
