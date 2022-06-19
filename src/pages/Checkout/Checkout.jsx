@@ -1,14 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { Address, OrderCard } from "../../components";
-import { useAuth, useCart, useOrder } from "../../context";
+import { useAuth, useCart, useOrder, useToast } from "../../context";
 import { v4 as uuid } from "uuid";
 const Checkout = () => {
-  const { cartState } = useCart();
+  const { cartState, cartDispatch } = useCart();
   const totalCartAmount = Number(cartState.totalPrice) + 499;
   const { authState } = useAuth();
   const { user } = authState;
   const navigate = useNavigate();
   const { orderDispatch } = useOrder();
+  const { toastDispatch } = useToast();
   const RAZORPAY_URL = "https://checkout.razorpay.com/v1/checkout.js";
 
   const handleLoadScript = (src) => {
@@ -26,17 +27,16 @@ const Checkout = () => {
   };
   const openRazorpay = async () => {
     const response = await handleLoadScript(RAZORPAY_URL);
-    console.log("response", response);
     if (!response) {
-      // showToast(
-      //   "Could not load razorpay payment options. Please try again later.",
-      //   "error"
-      // );
-      console.log("Error");
+      toastDispatch({
+        type: "SHOW",
+        payload:
+          "Could not load razorpay payment options. Please try again later.",
+      });
       return;
     }
     const options = {
-      key: "rzp_test_JPhKYo38jLZr6s",
+      key: process.env.REACT_APP_RAZORPAY_KEY,
       amount: totalCartAmount * 100,
       currency: "INR",
       name: "The Red Closet",
@@ -49,7 +49,13 @@ const Checkout = () => {
             isOrdered: true,
             order_id: uuid(),
             payment_id: response.razorpay_payment_id,
+            ordersList: [...cartState.itemsInCart],
+            totalPrice: Number(cartState.totalPrice) + 499,
           },
+        });
+        cartDispatch({
+          type: "EMPTY_CART",
+          payload: [],
         });
         if (data.razorpay_payment_id) {
           navigate("/user/order-history");
