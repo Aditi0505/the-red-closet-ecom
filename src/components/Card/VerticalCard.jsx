@@ -19,7 +19,7 @@ const VerticalCard = ({ product }) => {
         </div>
         <div className="card-body">
           <div className="card-title">{product.title}</div>
-          <div className="card-desc">{`$ ${product.price}`}</div>
+          <div className="card-desc">{`₹ ${product.price}`}</div>
           <div className="card-desc">
             {[...Array(5)].map((item, i) =>
               i + 1 > product.rating ? (

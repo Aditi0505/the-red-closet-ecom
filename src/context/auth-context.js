@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
     isSignedUp: false,
     isLoggedOut: false,
     encodedToken: localStorage.getItem("token"),
+    user: null,
   });
   const navigate = useNavigate();
 

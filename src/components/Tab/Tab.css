@@ -1,0 +1,16 @@
+.tab-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tab {
+  flex-grow: 1;
+  text-align: center;
+  border-radius: 0;
+  width: 15rem;
+}
+
+.select .tab {
+  background-color: var(--accent-red);
+  color: var(--primary-color);
+}

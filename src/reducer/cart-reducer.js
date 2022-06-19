@@ -103,6 +103,14 @@ export const cartReducer = (state, action) => {
             ? [...state.wishlistItems]
             : [{ ...action.payload, quantity: 1 }, ...state.wishlistItems],
       };
+    case "EMPTY_CART":
+      return {
+        ...state,
+        itemsInCart: action.payload,
+        quantity: 0,
+        totalPrice: 0,
+        totalDiscountedPrice: 0,
+      };
     default:
       return state;
   }
