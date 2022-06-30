@@ -118,28 +118,17 @@ const Signup = () => {
         navigate,
         location
       );
-      data
-        .then((res) =>
-          res.error
-            ? toast.error(res.payload)
-            : toast.success("User signed up!")
-        )
-        .catch((e) => toast.error(e));
-      const login = loginHandler(
-        userDetails.email,
-        userDetails.password,
-        authDispatch,
-        toast,
-        navigate,
-        location
-      );
-      login.then((res) =>
-        res.error
-          ? toast.error(res.payload)
-          : toast.success("User logged in!") &&
-            navigate(location.state?.from?.pathname || "/", {
-              replace: true,
-            })
+      data.then(
+        (res) =>
+          !res &&
+          loginHandler(
+            userDetails.email,
+            userDetails.password,
+            authDispatch,
+            toast,
+            navigate,
+            location
+          )
       );
     } else {
       toast.error("Password does not match!");
