@@ -204,7 +204,8 @@ img,
     width: 100%;
   }
   .cart-wrapper {
-    margin-top: 20rem;
+    margin-top: 10rem;
+    justify-content: center;
   }
   .profile {
     margin-top: 10rem;
