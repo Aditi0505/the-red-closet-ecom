@@ -8,10 +8,14 @@ const HorizontalCard = ({ title, image, msg, category }) => {
     });
   };
   return (
-    <div className="card-container-horizontal">
+    <div className="card-container-horizontal border-rd2">
       <div className="card-inner-container-horizontal">
         <div className="card-image-horizontal">
-          <img src={image} alt="Taylor Swift" className="img-horizontal" />
+          <img
+            src={image}
+            alt="Taylor Swift"
+            className="img-horizontal border-rd2"
+          />
         </div>
         <div className="flex-center card-body-horizontal">
           <div className="card-title-horizontal">{title}</div>

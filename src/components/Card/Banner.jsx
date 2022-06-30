@@ -4,14 +4,14 @@ const Banner = ({ image, banner }) => {
   const { filterDispatch } = useFilter();
   return (
     <div className="small-banner">
-      <div className="card">
-        <div className="card-inner-container">
+      <div className="card border-rd2 no-border">
+        <div className="card-inner-container border-rd2">
           <div className="card-image-overlay opacity">
             <Link to="/products" state={banner}>
               <img
                 src={image}
                 alt="Taylor Swift"
-                className="img"
+                className="img border-rd2"
                 onClick={() =>
                   filterDispatch({
                     type: "CLEAR",
