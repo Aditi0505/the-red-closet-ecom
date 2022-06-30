@@ -65,12 +65,12 @@ const Signup = () => {
       toast.info("Please enter first name");
     } else if (!user.lastName) {
       toast.info("Please enter last name");
+    } else if (!user.email || !user.email.includes("@")) {
+      toast.info("Please enter valid username");
     } else if (!confirmPassword && !password) {
       toast.info("Please enter valid password");
     } else if (!confirmPassword && password) {
       toast.info("Please confirm password");
-    } else if (!user.email) {
-      toast.info("Please enter valid username");
     } else {
       const isValid = validateFields(password, confirmPassword);
       if (isValid) {
