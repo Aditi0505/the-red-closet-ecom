@@ -1,4 +1,4 @@
-export const validateFields = (email, password, confirmPassword) => {
+export const validateFields = (password, confirmPassword) => {
   const validatePassword = password === confirmPassword;
   return validatePassword;
 };
