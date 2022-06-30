@@ -1,16 +1,9 @@
-import { useEffect } from "react";
 import { Banner, HorizontalCard } from "../../components";
-import { useToast } from "../../context";
 import { bannerList, cardList } from "../../data/homeData";
 import { setTitle } from "../../utils/set-title";
 const Home = () => {
   const title = "The Red Closet | Home";
   setTitle(title);
-  const { toastDispatch } = useToast();
-
-  useEffect(() => {
-    toastDispatch({ type: "HIDE", payload: "" });
-  }, [toastDispatch]);
   return (
     <div>
       <main className="outer-wrapper">
@@ -27,7 +20,7 @@ const Home = () => {
             <img
               alt="taylor swift"
               src="/assets/images/taylorSwift.jpg"
-              className="responsive"
+              className="responsive border-rd2"
             />
           </div>
         </section>
