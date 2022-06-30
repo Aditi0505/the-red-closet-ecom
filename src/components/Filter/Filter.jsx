@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useToast, useFilter } from "../../context";
+import { useFilter } from "../../context";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { RadioButton } from "../RadioButton/RadioButton";
 import { Rating } from "../Rating/Rating";
+import { toast } from "react-toastify";
 
 const priceRangeList = [0, 3000, 7000];
 
 const Filter = () => {
-  const { toastDispatch } = useToast();
   const { filterState, filterDispatch } = useFilter();
   const [categories, setCategories] = useState([]);
 
@@ -18,10 +18,10 @@ const Filter = () => {
         const response = await axios.get("/api/categories");
         setCategories(response.data.categories);
       } catch {
-        toastDispatch({ type: "SHOW" });
+        toast.error("Cannot display categories right now.");
       }
     })();
-  }, [toastDispatch]);
+  }, []);
 
   return (
     <aside className="outer-wrapper">

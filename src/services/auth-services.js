@@ -4,7 +4,7 @@ export const loginHandler = async (
   email,
   password,
   authDispatch,
-  toastDispatch,
+  toast,
   navigate,
   location
 ) => {
@@ -18,47 +18,22 @@ export const loginHandler = async (
       navigate(location.state?.from?.pathname || "/", {
         replace: true,
       });
-      toastDispatch({
-        type: "SHOW",
-        payload: "User Logged in!",
-      });
-      data.errors &&
-        toastDispatch({
-          type: "SHOW",
-          payload: data.errors[0],
-        });
+      toast.success("User Logged in!");
+      data.errors && toast.error(data.errors[0]);
     } else if (!email && !password) {
-      toastDispatch({
-        type: "SHOW",
-        payload: "Please enter valid credentials.",
-      });
+      toast.error("Please enter valid credentials.");
     } else if (!password) {
-      toastDispatch({
-        type: "SHOW",
-        payload: "Please enter valid password.",
-      });
+      toast.error("Please enter valid password.");
     } else if (!email) {
-      toastDispatch({
-        type: "SHOW",
-        payload: "Please enter valid username.",
-      });
+      toast.error("Please enter valid username.");
     }
   } catch (error) {
     if (error.response.status === 401) {
-      return toastDispatch({
-        type: "SHOW",
-        payload: "Invalid Credentials!",
-      });
+      return toast.error("Invalid Credentials!");
     } else if (error.response.status === 404) {
-      return toastDispatch({
-        type: "SHOW",
-        payload: "User Not Found! Please signup first!",
-      });
+      return toast.error("User Not Found! Please signup first!");
     } else {
-      return toastDispatch({
-        type: "SHOW",
-        payload: "Cannot login right now!",
-      });
+      return toast.error("Cannot login right now!");
     }
   }
 };
@@ -66,14 +41,19 @@ export const loginHandler = async (
 export const signupHandler = async (
   email,
   password,
+  user,
   authDispatch,
-  toastDispatch,
+  toast,
   navigate,
   location
 ) => {
   try {
     if (email !== "" && password !== "") {
-      const data = await axios.post("/api/auth/signup", { email, password });
+      const data = await axios.post("/api/auth/signup", {
+        email,
+        password,
+        user,
+      });
       authDispatch({
         type: "SIGNUP",
         payload: { email: email, pasword: password, data },
@@ -81,31 +61,17 @@ export const signupHandler = async (
       navigate(location.state?.from?.pathname || "/login", {
         replace: true,
       });
-      toastDispatch({
-        type: "SHOW",
-        payload: "Signup Successful!",
-      });
-      data.errors &&
-        toastDispatch({
-          type: "SHOW",
-          payload: data.errors[0],
-        });
+
+      toast.success("Signup Successful!");
+      data.errors && toast.error(data.errors[0]);
     } else {
-      toastDispatch({
-        type: "SHOW",
-        payload: "Please enter correct details.",
-      });
+      toast.error("Please enter correct details.");
     }
   } catch (error) {
     if (error.response.status === 422) {
-      return toastDispatch({
-        type: "SHOW",
-        payload: "User already Exist!",
-      });
+      return toast.error("User already Exist!");
+    } else {
+      toast.error("Cannot signup right now.");
     }
-    toastDispatch({
-      type: "SHOW",
-      payload: "Cannot signup right now.",
-    });
   }
 };

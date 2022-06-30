@@ -1,21 +1,18 @@
 import { useEffect } from "react";
-import { Address, CartProduct } from "../../components";
-import { useCart, useToast, useAuth, useOrder } from "../../context";
+import { Address, CartProduct, NoData } from "../../components";
+import { useCart, useAuth, useOrder } from "../../context";
 import { setTitle } from "../../utils/set-title";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 const Cart = () => {
   const title = "The Red Closet | Cart";
   setTitle(title);
   const { cartState } = useCart();
-  const { toastDispatch } = useToast();
   const { authState } = useAuth();
   const { orderState } = useOrder();
   const totalCartAmount = Number(cartState.totalPrice) + 499;
   useEffect(() => {
-    toastDispatch({ type: "HIDE", payload: "" });
-    cartState.itemsInCart.length <= 0 &&
-      toastDispatch({ type: "SHOW", payload: "No items added in the cart" });
     (async () => {
       try {
         await axios.get("/api/user/cart", {
@@ -24,18 +21,19 @@ const Cart = () => {
           },
         });
       } catch {
-        toastDispatch({
-          type: "SHOW",
-          payload: "No items to show in the cart at the moment",
-        });
+        toast.error("No items to show in the cart at the moment");
       }
     })();
-  }, [cartState.itemsInCart.length, toastDispatch, authState.encodedToken]);
+  }, [cartState.itemsInCart.length, authState.encodedToken]);
 
   return (
-    <main className="outer-wrapper">
+    <main
+      className={`outer-wrapper page-height ${
+        cartState.itemsInCart.length > 0 && "flex-center"
+      }`}
+    >
       {cartState.itemsInCart.length > 0 ? (
-        <section className="display-screen">
+        <section className="display-screen cart-wrapper">
           <section className="flex-column">
             <Address />
             {cartState.itemsInCart.map(
@@ -47,8 +45,8 @@ const Cart = () => {
           </section>
 
           {cartState.quantity > 0 && cartState.itemsInCart.length > 0 && (
-            <div className="text-card-container card">
-              <div className="card-inner-container">
+            <div className="text-card-container card border-rd2">
+              <div className="card-inner-container border-rd2">
                 <div className="card-body padding-sm">
                   <div className="card-title text-left">Price Details</div>
                   <div className="card-desc flex-column">
@@ -106,7 +104,7 @@ const Cart = () => {
           )}
         </section>
       ) : (
-        ""
+        <NoData pageInfo={"Cart"} />
       )}
     </main>
   );

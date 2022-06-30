@@ -2,13 +2,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Input } from "../../../components";
 import { setTitle } from "../../../utils/set-title";
-import { useToast, useAuth } from "../../../context";
+import { useAuth } from "../../../context";
 import { loginHandler } from "../../../services";
+import { toast } from "react-toastify";
 const Login = () => {
   const title = "The Red Closet | Login";
   setTitle(title);
   const { authDispatch } = useAuth();
-  const { toastDispatch } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
   const [userName, setUserName] = useState("");
@@ -37,13 +37,13 @@ const Login = () => {
       user.email,
       user.password,
       authDispatch,
-      toastDispatch,
+      toast,
       navigate,
       location
     );
   };
   return (
-    <main className="outer-wrapper flex-spbt">
+    <main className="outer-wrapper flex-spbt page-height">
       <section className="screen flex-spbt">
         <div className="form-container card-container-shadow">
           <div className="card-title">
@@ -91,21 +91,13 @@ const Login = () => {
 
             <button
               type="button"
-              className="btn btn-outline-primary margin-tb-sm"
-              onClick={guestLoginHandler}
-            >
-              Login- Guest Account
-            </button>
-
-            <button
-              type="button"
-              className="btn btn-primary margin-tb-sm"
+              className="btn btn-primary margin-tb-sm auth-button"
               onClick={() => {
                 loginHandler(
                   userName,
                   password,
                   authDispatch,
-                  toastDispatch,
+                  toast,
                   navigate,
                   location
                 );
@@ -113,8 +105,15 @@ const Login = () => {
             >
               Login To Your Account
             </button>
+            <button
+              type="button"
+              className="btn btn-outline-primary margin-tb-sm auth-button"
+              onClick={guestLoginHandler}
+            >
+              Login- Guest Account
+            </button>
             <div>
-              <Link to="/signup" className="text text-sm ft-light">
+              <Link to="/signup" className="text text-sm ft-light underlined">
                 Create New Account
               </Link>
             </div>

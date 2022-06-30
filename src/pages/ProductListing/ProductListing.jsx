@@ -1,5 +1,5 @@
-import { VerticalCard, FilterButton, Filter } from "../../components";
-import { useToast, useFilter } from "../../context";
+import { VerticalCard, FilterButton, Filter, NoData } from "../../components";
+import { useFilter } from "../../context";
 import { useState, useEffect } from "react";
 import { setTitle } from "../../utils/set-title";
 import axios from "axios";
@@ -11,11 +11,10 @@ import {
   getPricedProducts,
   getSearchedProducts,
 } from "../../utils";
-
+import { toast } from "react-toastify";
 const ProductListing = () => {
   const location = useLocation();
   const categoryName = location.state;
-  const { toastDispatch } = useToast();
   const { filterState, filterDispatch } = useFilter();
   const [productList, setProductList] = useState([]);
   const title = "The Red Closet | Products";
@@ -32,29 +31,29 @@ const ProductListing = () => {
           data: { products },
         } = await axios.get("/api/products");
         setProductList(products);
-        toastDispatch({ type: "HIDE", payload: "" });
         filterDispatch({
           type: "FILTER_BY_CATEGORY",
           payload: categoryName,
         });
       } catch {
-        toastDispatch({
-          type: "SHOW",
-          payload: "Cannot fetch data right now.",
-        });
+        toast.error("Cannot display products right now.");
       }
     })();
-  }, [toastDispatch, filterDispatch, categoryName]);
+  }, [filterDispatch, categoryName]);
 
   return (
     <div>
       <Filter />
-      <main className="outer-wrapper flex-spbt product-listing">
-        <div className="display-screen">
-          {sortedProductList.map((product) => (
-            <VerticalCard product={product} key={product._id} />
-          ))}
-        </div>
+      <main className="outer-wrapper product-listing">
+        {sortedProductList.length > 0 ? (
+          <section className="display-screen">
+            {sortedProductList.map((product) => (
+              <VerticalCard product={product} key={product._id} />
+            ))}
+          </section>
+        ) : (
+          <NoData pageInfo={"Product List"} />
+        )}
         <div className="filter-buttons">
           <FilterButton value="Sort" />
           <FilterButton value="Filter" />
