@@ -5,7 +5,6 @@ export const authReducer = (state, { type, payload }) => {
         ...state,
         isSignedUp: true,
         encodedToken: payload.data.data.encodedToken,
-        user: payload.data.data.foundUser,
       };
     case "LOGIN":
       return {
