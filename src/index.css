@@ -1,4 +1,6 @@
 @import url("../src/components/Tab/Tab.css");
+@import url("../src/components/Toast/Toast.css");
+@import url("../src/components/NotFound/PageNotFound.css");
 /* home layout */
 
 .outer-wrapper {
@@ -20,9 +22,9 @@
 
 .footer {
   background-color: var(--secondary-color);
-  position: fixed;
   bottom: 0;
   height: 5vh;
+  overflow: hidden;
 }
 
 /* filters */
@@ -31,7 +33,7 @@
   width: 25.6rem;
   margin-top: 6.1rem;
   overflow-y: scroll;
-  height: 83vh;
+  height: 82.5vh;
   position: fixed;
 }
 
@@ -73,17 +75,20 @@ body {
 /* product listing */
 .product-listing {
   margin-left: 25.6rem;
+  min-height: 100vh;
 }
 
 .display-screen {
-  margin: 6.8rem 0 5.2rem 0;
+  margin: 6.8rem 0 5.2rem 10rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   gap: var(--sm-size);
 }
-
+.profile {
+  margin-top: 6rem;
+}
 .toast-position {
   position: fixed;
   top: 100px;
@@ -97,6 +102,9 @@ body {
 .custom-width {
   width: var(--xl-size);
   height: var(--xl-size);
+}
+.cart-wrapper {
+  justify-content: flex-start;
 }
 .order-img {
   width: 15rem;
@@ -113,10 +121,12 @@ body {
 }
 
 .sign-up {
-  margin-top: 6rem;
+  margin-top: 10rem;
   margin-bottom: 0;
 }
-
+.page-height {
+  min-height: 100vh;
+}
 .showPassword {
   position: absolute;
   right: 2rem;
@@ -126,8 +136,36 @@ body {
 .passwordBox {
   position: relative;
 }
-img {
-  object-fit: cover;
+img,
+.no-data {
+  object-fit: fill;
+}
+.no-data {
+  margin-top: 16rem;
+  max-width: 24rem;
+}
+.border-rd2 {
+  border-radius: 2rem;
+}
+.no-border {
+  border: none;
+}
+.background {
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.mobileView {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.underlined {
+  text-decoration: underline;
+}
+.auth-button {
+  width: 80%;
 }
 @media screen and (max-width: 54em) {
   html {
@@ -139,7 +177,7 @@ img {
   }
 
   .display-screen {
-    margin-top: 12rem;
+    margin: 0;
     width: 100%;
   }
 
@@ -148,7 +186,7 @@ img {
   }
 
   .product-listing {
-    margin-top: -2rem;
+    margin-top: 12rem;
     margin-left: 0;
   }
 
@@ -157,7 +195,18 @@ img {
     justify-content: flex-end;
     align-items: flex-end;
     width: 100%;
-    position: fixed;
-    bottom: 5vh;
+    bottom: 0;
+    left: 0;
+    top: 100vh;
+    position: sticky;
+  }
+  .profile-screen {
+    width: 100%;
+  }
+  .cart-wrapper {
+    margin-top: 20rem;
+  }
+  .profile {
+    margin-top: 10rem;
   }
 }
