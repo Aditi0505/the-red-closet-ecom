@@ -14,11 +14,11 @@ import {
   Footer,
   NavBar,
   OrderHistory,
+  PageNotFound,
   Toast,
   UserInfo,
 } from "./components";
 import {
-  ToastProvider,
   FilterProvider,
   CartProvider,
   AuthProvider,
@@ -32,79 +32,78 @@ const App = () => {
       <OrderProvider>
         <CartProvider>
           <FilterProvider>
-            <ToastProvider>
-              <Toast />
-              <NavBar />
-              <div className="App">
-                <Routes>
-                  <Route path="/" exact element={<Home />} />
-                  <Route path="/products" element={<ProductListing />} />
+            <Toast />
+            <NavBar />
+            <div className="App">
+              <Routes>
+                <Route path="/" exact element={<Home />} />
+                <Route path="/products" element={<ProductListing />} />
 
+                <Route
+                  path="/cart"
+                  element={
+                    <RequiresAuth>
+                      <Cart />
+                    </RequiresAuth>
+                  }
+                />
+                <Route
+                  path="/wishlist"
+                  element={
+                    <RequiresAuth>
+                      <Wishlist />
+                    </RequiresAuth>
+                  }
+                />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/mock" element={<Mockman />} />
+                <Route
+                  path="/user"
+                  element={
+                    <RequiresAuth>
+                      <Profile />
+                    </RequiresAuth>
+                  }
+                >
                   <Route
-                    path="/cart"
+                    index
                     element={
                       <RequiresAuth>
-                        <Cart />
+                        <UserInfo />
                       </RequiresAuth>
                     }
                   />
                   <Route
-                    path="/wishlist"
+                    path="addresses"
                     element={
                       <RequiresAuth>
-                        <Wishlist />
+                        <Address />
                       </RequiresAuth>
                     }
                   />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route path="/mock" element={<Mockman />} />
                   <Route
-                    path="/user"
+                    exact
+                    path="order-history"
                     element={
                       <RequiresAuth>
-                        <Profile />
-                      </RequiresAuth>
-                    }
-                  >
-                    <Route
-                      index
-                      element={
-                        <RequiresAuth>
-                          <UserInfo />
-                        </RequiresAuth>
-                      }
-                    />
-                    <Route
-                      path="addresses"
-                      element={
-                        <RequiresAuth>
-                          <Address />
-                        </RequiresAuth>
-                      }
-                    />
-                    <Route
-                      exact
-                      path="order-history"
-                      element={
-                        <RequiresAuth>
-                          <OrderHistory />
-                        </RequiresAuth>
-                      }
-                    />
-                  </Route>
-                  <Route
-                    path="/checkout"
-                    element={
-                      <RequiresAuth>
-                        <Checkout />
+                        <OrderHistory />
                       </RequiresAuth>
                     }
                   />
-                </Routes>
-              </div>
-              <Footer />
-            </ToastProvider>
+                </Route>
+                <Route
+                  path="/checkout"
+                  element={
+                    <RequiresAuth>
+                      <Checkout />
+                    </RequiresAuth>
+                  }
+                />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </div>
+            <Footer />
           </FilterProvider>
         </CartProvider>
       </OrderProvider>

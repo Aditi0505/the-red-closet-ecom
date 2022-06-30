@@ -1,0 +1,4 @@
+.toastify-container > div {
+  font-size: var(--sm-size);
+  font-family: var(--body-font);
+}
