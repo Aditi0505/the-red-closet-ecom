@@ -1,12 +1,12 @@
 const OrderCard = ({ product }) => {
   return (
-    <div className="card-container-horizontal full-width">
-      <div className="card-inner-container-horizontal">
-        <div className="horizontal-card-image">
+    <div className="card-container-horizontal full-width border-rd2">
+      <div className="card-inner-container-horizontal border-rd2">
+        <div className="horizontal-card-image border-rd2">
           <img
             src={product.image}
             alt={product.image}
-            className="img-horizontal order-img"
+            className="img-horizontal order-img border-rd2"
           />
         </div>
         <div className="flex-center card-body-horizontal">

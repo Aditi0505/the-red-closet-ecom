@@ -20,6 +20,7 @@ const NavBar = () => {
         </nav>
         {location.pathname === "/products" ? (
           <input
+            className="border-rd2 no-border"
             type="text"
             name="search"
             id="search"
@@ -35,7 +36,7 @@ const NavBar = () => {
         ) : (
           ""
         )}
-        {!authState.isLoggedIn && !authState.IsLoggedOut ? (
+        {!authState.encodedToken ? (
           <ul className="nav-icons">
             {location.pathname === "/" ? (
               <Button buttonState={"Login"} route="login" />
@@ -70,7 +71,7 @@ const NavBar = () => {
               iconclassName={"fas fa-shopping-cart"}
               badgeCount={cartState.itemsInCart.length}
             />
-            {authState.isLoggedIn && (
+            {authState.encodedToken && (
               <li>
                 <Link to="/user" className="nav-icon">
                   <div className="badge">

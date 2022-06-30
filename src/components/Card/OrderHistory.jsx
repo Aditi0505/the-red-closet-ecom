@@ -8,7 +8,7 @@ const OrderHistory = () => {
     orderState.orders.map((order) => (
       <div className="outer-wrapper" key={order.order_id}>
         <div
-          className="card-container-horizontal padding-sm"
+          className="card-container-horizontal padding-sm border-rd2"
           key={order.order_id}
         >
           <div className="card-inner-container-horizontal flex-column full-width">

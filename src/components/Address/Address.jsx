@@ -1,7 +1,7 @@
 const Address = () => {
   return (
     <div className="text-card-container btn">
-      <div className="card-inner-container">
+      <div className="card-inner-container border-rd2">
         <div className="card-body padding-sm">
           <div className="card-title flex-spbt card-text flex-column">
             <div className="flex-start gap">

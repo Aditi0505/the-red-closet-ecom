@@ -1,10 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { Tab } from "../../components";
+import { setTitle } from "../../utils";
 
 const Profile = () => {
+  setTitle("The Red Closet | Profile");
   return (
-    <div className="outer-wrapper">
-      <div className="flex-center profile full-height display-screen flex-column">
+    <div className="outer-wrapper page-height">
+      <div className="flex-center profile full-height flex-column">
         <div className="flex-center">
           <NavLink
             end
