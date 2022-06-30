@@ -4,10 +4,9 @@ export const addToCartHandler = async (
   product,
   authState,
   cartDispatch,
-  toastDispatch
+  toast
 ) => {
   try {
-    //api
     await axios.post(
       "/api/user/cart",
       { product },
@@ -21,15 +20,9 @@ export const addToCartHandler = async (
       type: "ADD_TO_CART",
       payload: product,
     });
-    toastDispatch({
-      type: "SHOW",
-      payload: "Product added to the cart.",
-    });
+    toast.success("Product added to the cart.");
   } catch (e) {
-    toastDispatch({
-      type: "SHOW",
-      payload: "Cannot add to cart right now.",
-    });
+    toast.error("Cannot add to cart right now.");
   }
 };
 
@@ -37,10 +30,9 @@ export const increaseQuantityHandler = async (
   product,
   authState,
   cartDispatch,
-  toastDispatch
+  toast
 ) => {
   try {
-    //api
     await axios.post(
       `/api/user/cart/${product._id}`,
       {
@@ -59,10 +51,7 @@ export const increaseQuantityHandler = async (
       payload: product,
     });
   } catch (e) {
-    toastDispatch({
-      type: "SHOW",
-      payload: "Cannot increase quantity right now.",
-    });
+    toast.error("Cannot increase quantity right now.");
   }
 };
 
@@ -70,10 +59,9 @@ export const decreaseQuantityHandler = async (
   product,
   authState,
   cartDispatch,
-  toastDispatch
+  toast
 ) => {
   try {
-    //api
     await axios.post(
       `/api/user/cart/${product._id}`,
       {
@@ -92,10 +80,7 @@ export const decreaseQuantityHandler = async (
       payload: product,
     });
   } catch (e) {
-    toastDispatch({
-      type: "SHOW",
-      payload: "Cannot decrease quantity right now.",
-    });
+    toast.error("Cannot decrease quantity right now.");
   }
 };
 
@@ -103,10 +88,9 @@ export const removeFromCartHandler = async (
   product,
   authState,
   cartDispatch,
-  toastDispatch
+  toast
 ) => {
   try {
-    //api
     await axios.delete(`/api/user/cart/${product._id}`, {
       headers: {
         authorization: authState.encodedToken,
@@ -116,11 +100,9 @@ export const removeFromCartHandler = async (
       type: "REMOVE_FROM_CART",
       payload: product,
     });
+    toast.success("Product removed from cart.");
   } catch (e) {
-    toastDispatch({
-      type: "SHOW",
-      payload: "Cannot remove from cart right now.",
-    });
+    toast.error("Cannot remove from cart right now.");
   }
 };
 
@@ -128,10 +110,9 @@ export const addToWishlistHandler = async (
   product,
   authState,
   cartDispatch,
-  toastDispatch
+  toast
 ) => {
   try {
-    //api
     await axios.post(
       "/api/user/wishlist",
       { product },
@@ -145,15 +126,9 @@ export const addToWishlistHandler = async (
       type: "ADD_TO_WISHLIST",
       payload: product,
     });
-    toastDispatch({
-      type: "SHOW",
-      payload: "Product added to the wishlist.",
-    });
+    toast.success("Product added to the wishlist.");
   } catch (e) {
-    toastDispatch({
-      type: "SHOW",
-      payload: "Cannot add to wishlist right now.",
-    });
+    toast.error("Cannot add to wishlist right now.");
   }
 };
 
@@ -161,10 +136,9 @@ export const removeFromWishlistHandler = async (
   product,
   authState,
   cartDispatch,
-  toastDispatch
+  toast
 ) => {
   try {
-    //api
     await axios.delete(`/api/user/wishlist/${product._id}`, {
       headers: {
         authorization: authState.encodedToken,
@@ -174,11 +148,9 @@ export const removeFromWishlistHandler = async (
       type: "REMOVE_FROM_WISHLIST",
       payload: product,
     });
+    toast.success("Product removed from wishlist.");
   } catch (e) {
-    toastDispatch({
-      type: "SHOW",
-      payload: "Cannot remove from wishlist right now.",
-    });
+    toast.error("Cannot remove from wishlist right now.");
   }
 };
 
@@ -186,10 +158,9 @@ export const moveToWishlistHandler = async (
   product,
   authState,
   cartDispatch,
-  toastDispatch
+  toast
 ) => {
   try {
-    //api
     await axios.delete(`/api/user/cart/${product._id}`, {
       headers: {
         authorization: authState.encodedToken,
@@ -208,10 +179,8 @@ export const moveToWishlistHandler = async (
       type: "MOVE_TO_WISHLIST",
       payload: product,
     });
+    toast.success("Product moved to wishlist!");
   } catch (e) {
-    toastDispatch({
-      type: "SHOW",
-      payload: "Cannot remove from wishlist right now.",
-    });
+    toast.error("Cannot remove from wishlist right now.");
   }
 };

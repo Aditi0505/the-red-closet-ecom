@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth, useCart, useToast } from "../../context";
+import { toast } from "react-toastify";
+import { useAuth, useCart } from "../../context";
 import {
   addToCartHandler,
   addToWishlistHandler,
@@ -8,14 +9,17 @@ import {
 
 const VerticalCard = ({ product }) => {
   const { cartState, cartDispatch } = useCart();
-  const { toastDispatch } = useToast();
   const { authState } = useAuth();
   const navigate = useNavigate();
   return (
-    <div className="card">
-      <div className="card-inner-container">
-        <div className="card-image">
-          <img src={product.image} alt={`${product.image}`} className="img" />
+    <div className="card border-rd2">
+      <div className="card-inner-container border-rd2">
+        <div className="card-image border-rd2">
+          <img
+            src={product.image}
+            alt={`${product.image}`}
+            className="img border-rd2"
+          />
         </div>
         <div className="card-body">
           <div className="card-title">{product.title}</div>
@@ -46,12 +50,7 @@ const VerticalCard = ({ product }) => {
             className="btn-primary btn flex-center full-width padding-xs margin"
             onClick={() =>
               authState.encodedToken
-                ? addToCartHandler(
-                    product,
-                    authState,
-                    cartDispatch,
-                    toastDispatch
-                  )
+                ? addToCartHandler(product, authState, cartDispatch, toast)
                 : navigate("/login")
             }
           >
@@ -71,7 +70,7 @@ const VerticalCard = ({ product }) => {
                   product,
                   authState,
                   cartDispatch,
-                  toastDispatch
+                  toast
                 )
               }
             ></i>
@@ -84,7 +83,7 @@ const VerticalCard = ({ product }) => {
                       product,
                       authState,
                       cartDispatch,
-                      toastDispatch
+                      toast
                     )
                   : navigate("/login")
               }

@@ -1,23 +1,22 @@
-import { useAuth, useCart, useToast } from "../../context";
+import { useAuth, useCart } from "../../context";
 import {
   decreaseQuantityHandler,
   increaseQuantityHandler,
   moveToWishlistHandler,
   removeFromCartHandler,
 } from "../../services";
-
+import { toast } from "react-toastify";
 const CartProduct = ({ product }) => {
   const { cartDispatch } = useCart();
-  const { toastDispatch } = useToast();
   const { authState } = useAuth();
   return (
-    <div className="card-container-horizontal">
-      <div className="card-inner-container-horizontal">
-        <div className="horizontal-card-image">
+    <div className="card-container-horizontal border-rd2">
+      <div className="card-inner-container-horizontal border-rd2">
+        <div className="horizontal-card-image border-rd2">
           <img
             src={product.image}
             alt={product.image}
-            className="img-horizontal"
+            className="img-horizontal border-rd2"
           />
         </div>
         <div className="flex-center card-body-horizontal">
@@ -38,7 +37,7 @@ const CartProduct = ({ product }) => {
                     product,
                     authState,
                     cartDispatch,
-                    toastDispatch
+                    toast
                   )
                 }
               >
@@ -52,7 +51,7 @@ const CartProduct = ({ product }) => {
                     product,
                     authState,
                     cartDispatch,
-                    toastDispatch
+                    toast
                   )
                 }
               >
@@ -63,12 +62,7 @@ const CartProduct = ({ product }) => {
             <button
               className="btn btn-icon"
               onClick={() =>
-                increaseQuantityHandler(
-                  product,
-                  authState,
-                  cartDispatch,
-                  toastDispatch
-                )
+                increaseQuantityHandler(product, authState, cartDispatch, toast)
               }
             >
               <i className="fa fa-plus"></i>
@@ -78,12 +72,7 @@ const CartProduct = ({ product }) => {
             <button
               className="full-width btn btn-secondary"
               onClick={() =>
-                removeFromCartHandler(
-                  product,
-                  authState,
-                  cartDispatch,
-                  toastDispatch
-                )
+                removeFromCartHandler(product, authState, cartDispatch, toast)
               }
             >
               Remove from Cart
@@ -91,12 +80,7 @@ const CartProduct = ({ product }) => {
             <button
               className="full-width btn btn-outline-secondary"
               onClick={() =>
-                moveToWishlistHandler(
-                  product,
-                  authState,
-                  cartDispatch,
-                  toastDispatch
-                )
+                moveToWishlistHandler(product, authState, cartDispatch, toast)
               }
             >
               Move to Wishlist

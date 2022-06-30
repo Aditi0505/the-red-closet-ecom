@@ -1,21 +1,20 @@
-import { useToast } from "../../context/toast-context";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Toast = () => {
-  const { toastState, toastDispatch } = useToast();
-  if (!toastState.showToast) return null;
   return (
-    <div className="leading-container z-index toast-position">
-      <div className="leading-toast flex-spbt">
-        <div>{toastState.payload}</div>
-        <div className="btn-container flex-spbt">
-          <button
-            className="toast toast-close"
-            onClick={() => toastDispatch({ type: "HIDE", payload: "" })}
-          >
-            <i className="fa fa-times" aria-hidden="true"></i>
-          </button>
-        </div>
-      </div>
-    </div>
+    <ToastContainer
+      className="toastify-container"
+      position="top-right"
+      autoClose={1500}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
   );
 };
 export { Toast };

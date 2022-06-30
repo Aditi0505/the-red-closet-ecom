@@ -6,21 +6,19 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [authState, authDispatch] = useReducer(authReducer, {
-    isLoggedIn: false,
-    isSignedUp: false,
-    isLoggedOut: false,
-    encodedToken: localStorage.getItem("token"),
-    user: null,
-  });
+    encodedToken: localStorage.getItem("token") || null,
+    user: JSON.parse(localStorage.getItem("user")) || null,
+  }); 
   const navigate = useNavigate();
-
   useEffect(() => {
     localStorage.setItem("token", authState.encodedToken);
-  }, [authState.encodedToken]);
+    localStorage.setItem("user", JSON.stringify(authState.user));
+  }, [authState.encodedToken, authState.user]);
 
   const logoutHandler = () => {
     authDispatch({ type: "LOGOUT", payload: "" });
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/");
   };
 

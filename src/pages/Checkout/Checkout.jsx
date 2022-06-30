@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Address, OrderCard } from "../../components";
-import { useAuth, useCart, useOrder, useToast } from "../../context";
+import { useAuth, useCart, useOrder } from "../../context";
 import { v4 as uuid } from "uuid";
+import { setTitle } from "../../utils";
+import { toast } from "react-toastify";
 const Checkout = () => {
   const { cartState, cartDispatch } = useCart();
   const totalCartAmount = Number(cartState.totalPrice) + 499;
@@ -9,9 +11,8 @@ const Checkout = () => {
   const { user } = authState;
   const navigate = useNavigate();
   const { orderDispatch } = useOrder();
-  const { toastDispatch } = useToast();
   const RAZORPAY_URL = "https://checkout.razorpay.com/v1/checkout.js";
-
+  setTitle("The Red Closet | Checkout");
   const handleLoadScript = (src) => {
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
@@ -28,11 +29,9 @@ const Checkout = () => {
   const openRazorpay = async () => {
     const response = await handleLoadScript(RAZORPAY_URL);
     if (!response) {
-      toastDispatch({
-        type: "SHOW",
-        payload:
-          "Could not load razorpay payment options. Please try again later.",
-      });
+      toast.error(
+        "Cannot not load razorpay payment options. Please try again later."
+      );
       return;
     }
     const options = {
@@ -74,7 +73,7 @@ const Checkout = () => {
     paymentObject.open();
   };
   return (
-    <div className="outer-wrapper">
+    <div className="outer-wrapper page-height">
       <div className="flex-center profile full-height display-screen flex-column">
         <div className="flex-column">
           <h1 className="text-center">Order Details</h1>
@@ -85,7 +84,7 @@ const Checkout = () => {
           <Address />
           {cartState.quantity > 0 && cartState.itemsInCart.length > 0 && (
             <div className="text-card-container">
-              <div className="card-inner-container">
+              <div className="card-inner-container border-rd2">
                 <div className="card-body padding-sm">
                   <div className="card-title text-left">Price Details</div>
                   <div className="card-desc flex-column">
