@@ -69,7 +69,7 @@ const Login = () => {
                   value={password}
                 />
                 <i
-                  className="fa fa-eye showPassword"
+                  className="fa fa-eye showLoginPassword"
                   onClick={showPasswordHandler}
                 ></i>
               </div>
@@ -83,7 +83,7 @@ const Login = () => {
                   value={password}
                 />
                 <i
-                  className="fa fa-eye showPassword"
+                  className="fa fa-eye showLoginPassword"
                   onClick={showPasswordHandler}
                 ></i>
               </div>

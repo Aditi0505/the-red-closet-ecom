@@ -127,10 +127,11 @@ body {
 .page-height {
   min-height: 100vh;
 }
-.showPassword {
+.showPassword,
+.showLoginPassword {
   position: absolute;
   right: 2rem;
-  top: 5.5rem;
+  top: 5rem;
   cursor: pointer;
 }
 .passwordBox {
@@ -166,6 +167,9 @@ img,
 }
 .auth-button {
   width: 80%;
+}
+.showLoginPassword {
+  top: 5.5rem;
 }
 @media screen and (max-width: 54em) {
   html {
